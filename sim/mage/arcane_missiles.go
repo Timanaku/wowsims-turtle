@@ -9,7 +9,8 @@ import (
 
 const ArcaneMissilesRanks = 8
 
-var ArcaneMissilesSpellId = [ArcaneMissilesRanks + 1]int32{0, 5143, 5144, 5145, 8416, 8417, 10211, 10212, 25345}
+var ArcaneMissilesChannelSpellId = [ArcaneMissilesRanks + 1]int32{0, 5143, 5144, 5145, 8416, 8417, 10211, 10212, 25345}
+var ArcaneMissilesTickSpellId = [ArcaneMissilesRanks + 1]int32{0, 7268, 7269, 7270, 8419, 8418, 10273, 10274, 25346}
 var ArcaneMissilesBaseTickDamage = [ArcaneMissilesRanks + 1]float64{0, 26, 38, 57, 86, 115, 153, 196, 230}
 var ArcaneMissilesSpellCoeff = [ArcaneMissilesRanks + 1]float64{0, .132, .204, .24, .24, .24, .24, .24, .24}
 var ArcaneMissilesCastTime = [ArcaneMissilesRanks + 1]int32{0, 3, 4, 5, 5, 5, 5, 5, 5}
@@ -31,7 +32,7 @@ func (mage *Mage) registerArcaneMissilesSpell() {
 }
 
 func (mage *Mage) getArcaneMissilesSpellConfig(rank int) core.SpellConfig {
-	spellId := ArcaneMissilesSpellId[rank]
+	spellId := ArcaneMissilesChannelSpellId[rank]
 	baseTickDamage := ArcaneMissilesBaseTickDamage[rank]
 	castTime := ArcaneMissilesCastTime[rank]
 	manaCost := ArcaneMissilesManaCost[rank]
@@ -96,7 +97,7 @@ func (mage *Mage) getArcaneMissilesSpellConfig(rank int) core.SpellConfig {
 }
 
 func (mage *Mage) getArcaneMissilesTickSpell(rank int) *core.Spell {
-	spellId := ArcaneMissilesSpellId[rank]
+	spellId := ArcaneMissilesTickSpellId[rank]
 	baseTickDamage := ArcaneMissilesBaseTickDamage[rank]
 	spellCoeff := ArcaneMissilesSpellCoeff[rank]
 
