@@ -77,7 +77,8 @@ func main() {
 	wowheadDB := database.ParseWowheadDB(tools.ReadFile(fmt.Sprintf("%s/wowhead_gearplannerdb.txt", inputsDir)))
 	atlaslootDB := database.ReadDatabaseFromJson(tools.ReadFile(fmt.Sprintf("%s/atlasloot_db.json", inputsDir)))
 	wagoItems := database.ParseWagoDB(tools.ReadFile(fmt.Sprintf("%s/wago_db2_items.csv", inputsDir)))
-	turtleDB := database.ParseTurtleGearplannerDB(tools.ReadFile(fmt.Sprintf("%s/turtle_gearplanner_items.json", inputsDir)))
+	turtleGearplannerDB := database.ParseTurtleGearplannerDB(tools.ReadFile(fmt.Sprintf("%s/turtle_gearplanner_items.json", inputsDir)))
+	turtleSpells := database.ParseTurtleSpellDB(tools.ReadFile(fmt.Sprintf("%s/Spell.csv", inputsDir)), tools.ReadFile(fmt.Sprintf("%s/SpellIcon.csv", inputsDir)))
 
 	db := database.NewWowDatabase()
 	db.Encounters = core.PresetEncounters
@@ -160,7 +161,7 @@ func main() {
 			db.MergeItem(item)
 		}
 	}
-	for _, item := range turtleDB.Items {
+	for _, item := range turtleGearplannerDB.Items {
 		db.MergeItem(item)
 	}
 
@@ -218,6 +219,9 @@ func main() {
 	for _, spellId := range database.SharedSpellsIcons {
 		db.AddSpellIcon(spellId, spellTooltips)
 	}
+
+	// Add spells from Turtle WoW DBC
+	db.MergeSpellIcons(turtleSpells)
 
 	for _, spellIds := range GetAllTalentSpellIds(&inputsDir) {
 		for _, spellId := range spellIds {
