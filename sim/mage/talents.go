@@ -17,6 +17,7 @@ func (mage *Mage) applyArcaneTalents() {
 	mage.applyMagicAbsorption()
 	mage.applyArcaneConcentration()
 	mage.applyTemporalConvergence()
+	mage.applyArcaneInstability()
 	mage.registerPresenceOfMindCD()
 	mage.registerArcanePowerCD()
 
@@ -231,6 +232,113 @@ func (mage *Mage) applyArcaneConcentration() {
 
 			if sim.Proc(procChance, "Clearcasting") {
 				mage.ClearcastingAura.Activate(sim)
+			}
+		},
+	})
+}
+
+func (mage *Mage) applyTemporalConvergence() {
+	if mage.Talents.TemporalConvergence == 0 {
+		return
+	}
+
+	procChance := 0.05 * float64(mage.Talents.TemporalConvergence)
+	manaMetrics := mage.NewManaMetrics(core.ActionID{SpellID: 51962})
+	icdDuration := time.Second * 15
+
+	icd := core.Cooldown{
+		Timer:    mage.NewTimer(),
+		Duration: icdDuration,
+	}
+
+	// Should maybe only be local
+	mage.TemporalConvergenceAura = mage.RegisterAura(core.Aura{
+		Label:    "Temporal Convergence",
+		ActionID: core.ActionID{SpellID: 51961},
+		Duration: time.Second * 15,
+		OnCastComplete: func(aura *core.Aura, sim *core.Simulation, spell *core.Spell) {
+			// OnCastComplete is called after OnSpellHitDealt / etc, so don't deactivate if it was just activated.
+			if aura.RemainingDuration(sim) == aura.Duration {
+				return
+			}
+
+			if spell.SpellCode != SpellCode_MageArcaneRupture {
+				return
+			}
+
+			mage.AddMana(sim, spell.Cost.BaseCost, manaMetrics)
+			aura.Deactivate(sim)
+		},
+	})
+
+	mage.RegisterAura(core.Aura{
+		Label:    "Temporal Convergence Talent",
+		Duration: core.NeverExpires,
+		OnReset: func(aura *core.Aura, sim *core.Simulation) {
+			aura.Activate(sim)
+		},
+		OnSpellHitDealt: func(aura *core.Aura, sim *core.Simulation, spell *core.Spell, result *core.SpellResult) {
+			if !result.Landed() || spell.SpellCode != SpellCode_MageArcaneMissilesTick {
+				return
+			}
+
+			if !icd.IsReady(sim) {
+				return
+			}
+
+			if sim.Proc(procChance, "Temporal Convergence") {
+				icd.Use(sim)
+
+				for _, spell := range mage.ArcaneRupture {
+					if spell != nil {
+						spell.CD.Reset()
+					}
+				}
+				mage.TemporalConvergenceAura.Activate(sim)
+			}
+		},
+	})
+}
+
+func (mage *Mage) applyArcaneInstability() {
+	if mage.Talents.ArcaneInstability == 0 {
+		return
+	}
+
+	procChance := []float64{.08, .16, .25}[mage.Talents.ArcaneInstability-1]
+	manaMetrics := mage.NewManaMetrics(core.ActionID{SpellID: 51977})
+
+	arcaneInstabilityDamage := 0.0
+	arcaneInstabilityProc := mage.RegisterSpell(core.SpellConfig{
+		ActionID:    core.ActionID{SpellID: 51977},
+		SpellSchool: core.SpellSchoolArcane,
+		DefenseType: core.DefenseTypeMagic,
+		ProcMask:    core.ProcMaskSpellProc,
+		Flags:       core.SpellFlagIgnoreResists | core.SpellFlagIgnoreTargetModifiers | core.SpellFlagIgnoreAttackerModifiers | core.SpellFlagBinary | core.SpellFlagNoOnCastComplete | core.SpellFlagPassiveSpell,
+
+		DamageMultiplier: 1,
+		ThreatMultiplier: 1,
+
+		ApplyEffects: func(sim *core.Simulation, target *core.Unit, spell *core.Spell) {
+			spell.CalcAndDealDamage(sim, target, arcaneInstabilityDamage, spell.OutcomeAlwaysHit)
+		},
+	})
+	mage.RegisterAura(core.Aura{
+		Label:    "Arcane Instability Talent",
+		Duration: core.NeverExpires,
+		OnReset: func(aura *core.Aura, sim *core.Simulation) {
+			aura.Activate(sim)
+		},
+		OnSpellHitDealt: func(aura *core.Aura, sim *core.Simulation, spell *core.Spell, result *core.SpellResult) {
+			if !result.Landed() || !spell.Flags.Matches(SpellFlagMage) || !spell.SpellSchool.Matches(core.SpellSchoolArcane) {
+				return
+			}
+
+			if sim.Proc(procChance, "Arcane Instability") {
+				arcaneInstabilityDamage = result.Damage * 0.25
+
+				mage.SpendMana(sim, mage.BaseMana*0.02, manaMetrics)
+				arcaneInstabilityProc.Cast(sim, result.Target)
 			}
 		},
 	})
@@ -548,69 +656,6 @@ func (mage *Mage) applyWintersChill() {
 				if aura.IsActive() {
 					aura.AddStack(sim)
 				}
-			}
-		},
-	})
-}
-
-func (mage *Mage) applyTemporalConvergence() {
-	if mage.Talents.TemporalConvergence == 0 {
-		return
-	}
-
-	procChance := 0.05 * float64(mage.Talents.TemporalConvergence)
-	manaMetrics := mage.NewManaMetrics(core.ActionID{SpellID: 51962})
-	icdDuration := time.Second * 15
-
-	icd := core.Cooldown{
-		Timer:    mage.NewTimer(),
-		Duration: icdDuration,
-	}
-
-	// Should maybe only be local
-	mage.TemporalConvergenceAura = mage.RegisterAura(core.Aura{
-		Label:    "Temporal Convergence",
-		ActionID: core.ActionID{SpellID: 51961},
-		Duration: time.Second * 15,
-		OnCastComplete: func(aura *core.Aura, sim *core.Simulation, spell *core.Spell) {
-			// OnCastComplete is called after OnSpellHitDealt / etc, so don't deactivate if it was just activated.
-			if aura.RemainingDuration(sim) == aura.Duration {
-				return
-			}
-
-			if spell.SpellCode != SpellCode_MageArcaneRupture {
-				return
-			}
-
-			mage.AddMana(sim, spell.Cost.BaseCost, manaMetrics)
-			aura.Deactivate(sim)
-		},
-	})
-
-	mage.RegisterAura(core.Aura{
-		Label:    "Temporal Convergence Talent",
-		Duration: core.NeverExpires,
-		OnReset: func(aura *core.Aura, sim *core.Simulation) {
-			aura.Activate(sim)
-		},
-		OnSpellHitDealt: func(aura *core.Aura, sim *core.Simulation, spell *core.Spell, result *core.SpellResult) {
-			if !result.Landed() || spell.SpellCode != SpellCode_MageArcaneMissilesTick {
-				return
-			}
-
-			if !icd.IsReady(sim) {
-				return
-			}
-
-			if sim.Proc(procChance, "Temporal Convergence") {
-				icd.Use(sim)
-
-				for _, spell := range mage.ArcaneRupture {
-					if spell != nil {
-						spell.CD.Reset()
-					}
-				}
-				mage.TemporalConvergenceAura.Activate(sim)
 			}
 		},
 	})
