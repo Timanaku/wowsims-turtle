@@ -75,15 +75,16 @@ type Mage struct {
 	Pyroblast               []*core.Spell
 	Scorch                  []*core.Spell
 
-	ArcanePowerAura     *core.Aura
-	ArcaneRuptureAura   *core.Aura
-	ArcaneSurgeAura     *core.Aura
-	ClearcastingAura    *core.Aura
-	CombustionAura      *core.Aura
-	IceArmorAura        *core.Aura
-	IceBarrierAuras     []*core.Aura
-	ImprovedScorchAuras core.AuraArray
-	MageArmorAura       *core.Aura
+	ArcanePowerAura         *core.Aura
+	ArcaneRuptureAura       *core.Aura
+	ArcaneSurgeAura         *core.Aura
+	ClearcastingAura        *core.Aura
+	CombustionAura          *core.Aura
+	IceArmorAura            *core.Aura
+	IceBarrierAuras         []*core.Aura
+	ImprovedScorchAuras     core.AuraArray
+	MageArmorAura           *core.Aura
+	TemporalConvergenceAura *core.Aura
 }
 
 // Agent is a generic way to access underlying mage on any of the agents.

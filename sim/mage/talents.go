@@ -15,6 +15,7 @@ func (mage *Mage) ApplyTalents() {
 
 func (mage *Mage) applyArcaneTalents() {
 	mage.applyArcaneConcentration()
+	mage.applyTemporalConvergence()
 	mage.registerPresenceOfMindCD()
 	mage.registerArcanePowerCD()
 
@@ -518,6 +519,69 @@ func (mage *Mage) applyWintersChill() {
 				if aura.IsActive() {
 					aura.AddStack(sim)
 				}
+			}
+		},
+	})
+}
+
+func (mage *Mage) applyTemporalConvergence() {
+	if mage.Talents.TemporalConvergence == 0 {
+		return
+	}
+
+	procChance := 0.05 * float64(mage.Talents.TemporalConvergence)
+	manaMetrics := mage.NewManaMetrics(core.ActionID{SpellID: 51962})
+	icdDuration := time.Second * 15
+
+	icd := core.Cooldown{
+		Timer:    mage.NewTimer(),
+		Duration: icdDuration,
+	}
+
+	// Should maybe only be local
+	mage.TemporalConvergenceAura = mage.RegisterAura(core.Aura{
+		Label:    "Temporal Convergence",
+		ActionID: core.ActionID{SpellID: 51961},
+		Duration: time.Second * 15,
+		OnCastComplete: func(aura *core.Aura, sim *core.Simulation, spell *core.Spell) {
+			// OnCastComplete is called after OnSpellHitDealt / etc, so don't deactivate if it was just activated.
+			if aura.RemainingDuration(sim) == aura.Duration {
+				return
+			}
+
+			if spell.SpellCode != SpellCode_MageArcaneRupture {
+				return
+			}
+
+			mage.AddMana(sim, spell.Cost.BaseCost, manaMetrics)
+			aura.Deactivate(sim)
+		},
+	})
+
+	mage.RegisterAura(core.Aura{
+		Label:    "Temporal Convergence Talent",
+		Duration: core.NeverExpires,
+		OnReset: func(aura *core.Aura, sim *core.Simulation) {
+			aura.Activate(sim)
+		},
+		OnSpellHitDealt: func(aura *core.Aura, sim *core.Simulation, spell *core.Spell, result *core.SpellResult) {
+			if !result.Landed() || spell.SpellCode != SpellCode_MageArcaneMissilesTick {
+				return
+			}
+
+			if !icd.IsReady(sim) {
+				return
+			}
+
+			if sim.Proc(procChance, "Temporal Convergence") {
+				icd.Use(sim)
+
+				for _, spell := range mage.ArcaneRupture {
+					if spell != nil {
+						spell.CD.Reset()
+					}
+				}
+				mage.TemporalConvergenceAura.Activate(sim)
 			}
 		},
 	})
