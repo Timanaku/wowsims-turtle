@@ -14,6 +14,7 @@ func (mage *Mage) ApplyTalents() {
 }
 
 func (mage *Mage) applyArcaneTalents() {
+	mage.applyMagicAbsorption()
 	mage.applyArcaneConcentration()
 	mage.applyTemporalConvergence()
 	mage.registerPresenceOfMindCD()
@@ -21,6 +22,7 @@ func (mage *Mage) applyArcaneTalents() {
 
 	// Arcane Subtlety
 	if mage.Talents.ArcaneSubtlety > 0 {
+		// Target's resistance part does not seem to be implemented
 		threatMultiplier := 1 - .20*float64(mage.Talents.ArcaneSubtlety)
 		mage.OnSpellRegistered(func(spell *core.Spell) {
 			if spell.SpellSchool.Matches(core.SpellSchoolArcane) && spell.Flags.Matches(SpellFlagMage) {
@@ -39,24 +41,26 @@ func (mage *Mage) applyArcaneTalents() {
 		})
 	}
 
-	// Magic Absorption
-	if mage.Talents.MagicAbsorption > 0 {
-		magicAbsorptionBonus := 2 * float64(mage.Talents.MagicAbsorption)
-		mage.AddResistances(magicAbsorptionBonus)
+	// Arcane Impact
+	if mage.Talents.ArcaneImpact > 0 {
+		bonusCrit := 2 * float64(mage.Talents.ArcaneImpact) * core.SpellCritRatingPerCritChance
+		mage.OnSpellRegistered(func(spell *core.Spell) {
+			if spell.SpellSchool.Matches(core.SpellSchoolArcane) && spell.Flags.Matches(SpellFlagMage) {
+				spell.BonusCritRating += bonusCrit
+			}
+		})
 	}
 
 	// Arcane Meditation
+	// TODO: Implement turtle version properly
 	mage.PseudoStats.SpiritRegenRateCasting += 0.05 * float64(mage.Talents.ArcaneMeditation)
 
-	// Arcane Instability
-	if mage.Talents.ArcaneInstability > 0 {
-		bonusDamageMultiplierAdditive := .01 * float64(mage.Talents.ArcaneInstability)
-		bonusCritRating := 1 * float64(mage.Talents.ArcaneInstability) * core.SpellCritRatingPerCritChance
-
+	// Arcane Potency
+	if mage.Talents.ArcanePotency > 0 {
+		critBonus := .50 * float64(mage.Talents.ArcanePotency)
 		mage.OnSpellRegistered(func(spell *core.Spell) {
-			if spell.Flags.Matches(SpellFlagMage) {
-				spell.DamageMultiplierAdditive += bonusDamageMultiplierAdditive
-				spell.BonusCritRating += bonusCritRating
+			if spell.SpellSchool.Matches(core.SpellSchoolArcane) && spell.Flags.Matches(SpellFlagMage) {
+				spell.CritDamageBonus += critBonus
 			}
 		})
 	}
@@ -152,6 +156,36 @@ func (mage *Mage) applyFrostTalents() {
 	}
 }
 
+func (mage *Mage) applyMagicAbsorption() {
+	if mage.Talents.MagicAbsorption == 0 {
+		return
+	}
+
+	spellID := []int32{29441, 29444, 29445}[mage.Talents.MagicAbsorption-1]
+	magicAbsorptionBonus := []float64{4, 7, 10}[mage.Talents.MagicAbsorption-1]
+	manaMetrics := mage.NewManaMetrics(core.ActionID{SpellID: 29442})
+
+	mage.AddResistances(magicAbsorptionBonus)
+
+	mage.RegisterAura(core.Aura{
+		Label:    "Magic Absorption",
+		ActionID: core.ActionID{SpellID: spellID},
+		Duration: core.NeverExpires,
+		OnReset: func(aura *core.Aura, sim *core.Simulation) {
+			aura.Activate(sim)
+		},
+		OnSpellHitDealt: func(aura *core.Aura, sim *core.Simulation, spell *core.Spell, result *core.SpellResult) {
+			if !spell.Flags.Matches(SpellFlagMage) {
+				return
+			}
+
+			if result.DidResist() {
+				mage.AddMana(sim, mage.MaxMana()*float64(mage.Talents.MagicAbsorption)/100, manaMetrics)
+			}
+		},
+	})
+}
+
 func (mage *Mage) applyArcaneConcentration() {
 	if mage.Talents.ArcaneConcentration == 0 {
 		return
@@ -161,7 +195,7 @@ func (mage *Mage) applyArcaneConcentration() {
 
 	mage.ClearcastingAura = mage.RegisterAura(core.Aura{
 		Label:    "Clearcasting",
-		ActionID: core.ActionID{SpellID: 12577},
+		ActionID: core.ActionID{SpellID: 12536},
 		Duration: time.Second * 15,
 		OnGain: func(aura *core.Aura, sim *core.Simulation) {
 			aura.Unit.PseudoStats.SchoolCostMultiplier.AddToMagicSchools(-100)
@@ -191,17 +225,11 @@ func (mage *Mage) applyArcaneConcentration() {
 			aura.Activate(sim)
 		},
 		OnSpellHitDealt: func(aura *core.Aura, sim *core.Simulation, spell *core.Spell, result *core.SpellResult) {
-			if !result.Landed() || !spell.Flags.Matches(SpellFlagMage) || spell.SpellCode == SpellCode_MageArcaneMissiles {
+			if !result.Landed() || !spell.Flags.Matches(SpellFlagMage) {
 				return
 			}
 
-			// TODO: Classic verify arcane missile proc chance
-			// Arcane Missile ticks can proc CC, just at a low rate of about 1.5% with 5/5 Arcane Concentration
-			// if spell == mage.ArcaneMissilesTickSpell {
-			// 	procChance *= 0.15
-			// }
-
-			if sim.Proc(procChance, "Arcane Concentration") {
+			if sim.Proc(procChance, "Clearcasting") {
 				mage.ClearcastingAura.Activate(sim)
 			}
 		},
