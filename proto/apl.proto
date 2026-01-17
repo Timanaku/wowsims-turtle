@@ -82,7 +82,7 @@ message APLAction {
     }
 }
 
-// NextIndex: 78
+// NextIndex: 79
 message APLValue {
     oneof value {
         // Operators
@@ -115,9 +115,10 @@ message APLValue {
         APLValueCurrentComboPoints current_combo_points = 16;
         APLValueTimeToEnergyTick time_to_energy_tick = 66;
         APLValueEnergyThreshold energy_threshold = 72;
-        
+
         // Stats
         APLValueCurrentAttackPower current_attack_power = 77;
+        APLValueCurrentCastSpeedMultiplier current_cast_speed_multiplier = 78;
 
         // GCD values
         APLValueGCDIsReady gcd_is_ready = 17;
@@ -258,11 +259,11 @@ message APLActionActivateAura {
 
 message APLActionActivateAuraWithStacks {
     ActionID aura_id = 1;
-    string num_stacks = 2; 
+    string num_stacks = 2;
 }
 
 message APLActionAddComboPoints {
-    string num_points = 2; 
+    string num_points = 2;
 }
 
 message APLActionTriggerICD {
@@ -396,6 +397,7 @@ message APLValueEnergyThreshold {
 }
 
 message APLValueCurrentAttackPower {}
+message APLValueCurrentCastSpeedMultiplier {}
 
 message APLValueGCDIsReady {}
 message APLValueGCDTimeToReady {}

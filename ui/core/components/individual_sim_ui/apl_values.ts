@@ -28,6 +28,7 @@ import {
 	APLValueCurrentManaPercent,
 	APLValueCurrentRage,
 	APLValueCurrentSealRemainingTime,
+	APLValueCurrentCastSpeedMultiplier,
 	APLValueCurrentTime,
 	APLValueCurrentTimePercent,
 	APLValueDotIsActive,
@@ -697,6 +698,13 @@ const valueKindFactories: { [f in NonNullable<APLValueKind>]: ValueKindConfig<AP
 		submenu: ['Stats'],
 		shortDescription: 'Current Attack Power includuing temporary bonuses.',
 		newValue: APLValueCurrentAttackPower.create,
+		fields: [],
+	}),
+	currentCastSpeedMultiplier: inputBuilder({
+		label: 'Current Cast Speed Multiplier',
+		submenu: ['Stats'],
+		shortDescription: 'Current Cast Speed Multiplier includuing temporary bonuses.',
+		newValue: APLValueCurrentCastSpeedMultiplier.create,
 		fields: [],
 	}),
 

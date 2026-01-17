@@ -28,9 +28,9 @@ const SPEC_CONFIG = registerSpecConfig(Spec.SpecMage, {
 		Stat.StatFrostPower,
 		Stat.StatSpellHit,
 		Stat.StatSpellCrit,
-		Stat.StatSpellHaste,
 		Stat.StatMP5,
 	],
+	epPseudoStats: [PseudoStat.PseudoStatCastSpeedMultiplier,],
 	// Reference stat against which to calculate EP. I think all classes use either spell power or attack power.
 	epReferenceStat: Stat.StatSpellDamage,
 	// Which stats to display in the Character Stats section, at the bottom of the left-hand sidebar.
@@ -50,7 +50,7 @@ const SPEC_CONFIG = registerSpecConfig(Spec.SpecMage, {
 		Stat.StatSpellHaste,
 		Stat.StatMP5,
 	],
-	displayPseudoStats: [],
+	displayPseudoStats: [PseudoStat.PseudoStatCastSpeedMultiplier],
 
 	defaults: {
 		// Default equipped gear.
@@ -66,9 +66,8 @@ const SPEC_CONFIG = registerSpecConfig(Spec.SpecMage, {
 			// Aggregated across 3 builds
 			[Stat.StatSpellHit]: 18.59,
 			[Stat.StatSpellCrit]: 13.91,
-			[Stat.StatSpellHaste]: 6.85,
 			[Stat.StatMP5]: 0.11,
-			[Stat.StatFireResistance]: 0.5,
+			[PseudoStat.PseudoStatCastSpeedMultiplier]: 14,
 		}),
 		// Default consumes settings.
 		consumes: Presets.DefaultConsumes,

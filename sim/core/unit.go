@@ -371,7 +371,7 @@ func (unit *Unit) SpellGCD() time.Duration {
 }
 
 func (unit *Unit) updateCastSpeed() {
-	unit.CastSpeed = (1 / (unit.PseudoStats.CastSpeedMultiplier * (1 + (unit.stats[stats.SpellHaste] / (HasteRatingPerHastePercent * 100)))))
+	unit.CastSpeed = 1 / unit.PseudoStats.CastSpeedMultiplier
 }
 
 func (unit *Unit) MultiplyCastSpeed(amount float64) {

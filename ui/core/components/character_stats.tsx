@@ -52,6 +52,7 @@ const statGroups = new Map<string, Array<UnitStat>>([
 			UnitStat.fromStat(Stat.StatShadowPower),
 			UnitStat.fromStat(Stat.StatSpellHit),
 			UnitStat.fromStat(Stat.StatSpellCrit),
+			UnitStat.fromStat(Stat.StatSpellHaste),
 			UnitStat.fromPseudoStat(PseudoStat.PseudoStatCastSpeedMultiplier),
 			UnitStat.fromStat(Stat.StatSpellPenetration),
 			UnitStat.fromStat(Stat.StatMP5),
@@ -74,8 +75,8 @@ const statGroups = new Map<string, Array<UnitStat>>([
 		[
 			UnitStat.fromStat(Stat.StatArcaneResistance),
 			UnitStat.fromStat(Stat.StatFireResistance),
-			UnitStat.fromStat(Stat.StatFrostResistance),
 			UnitStat.fromStat(Stat.StatNatureResistance),
+			UnitStat.fromStat(Stat.StatFrostResistance),
 			UnitStat.fromStat(Stat.StatShadowResistance),
 		],
 	],

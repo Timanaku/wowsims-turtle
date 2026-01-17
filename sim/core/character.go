@@ -161,6 +161,15 @@ func NewCharacter(party *Party, partyIndex int, player *proto.Player) Character 
 	if player.BonusStats != nil {
 		if player.BonusStats.Stats != nil {
 			character.bonusStats = stats.FromFloatArray(player.BonusStats.Stats)
+
+			if character.bonusStats[stats.MeleeHaste] != 0 {
+				character.PseudoStats.MeleeSpeedMultiplier *= 1 + character.bonusStats[stats.MeleeHaste]/100
+				character.PseudoStats.RangedSpeedMultiplier *= 1 + character.bonusStats[stats.MeleeHaste]/100
+			}
+
+			if character.bonusStats[proto.Stat_StatSpellHaste] != 0 {
+				character.PseudoStats.CastSpeedMultiplier *= 1 + character.bonusStats[proto.Stat_StatSpellHaste]/100
+			}
 		}
 		if player.BonusStats.PseudoStats != nil {
 			ps := player.BonusStats.PseudoStats
@@ -185,6 +194,9 @@ func NewCharacter(party *Party, partyIndex int, player *proto.Player) Character 
 			character.PseudoStats.CrossbowsSkill += ps[proto.PseudoStat_PseudoStatCrossbowsSkill]
 			character.PseudoStats.GunsSkill += ps[proto.PseudoStat_PseudoStatGunsSkill]
 			character.PseudoStats.BonusPhysicalDamage += ps[proto.PseudoStat_BonusPhysicalDamage]
+			character.PseudoStats.MeleeSpeedMultiplier += ps[proto.PseudoStat_PseudoStatMeleeSpeedMultiplier] / 100
+			character.PseudoStats.RangedSpeedMultiplier += ps[proto.PseudoStat_PseudoStatRangedSpeedMultiplier] / 100
+			character.PseudoStats.CastSpeedMultiplier += ps[proto.PseudoStat_PseudoStatCastSpeedMultiplier] / 100
 		}
 	}
 
@@ -651,6 +663,7 @@ func (character *Character) GetPseudoStatsProto() []float64 {
 
 		proto.PseudoStat_PseudoStatMeleeSpeedMultiplier:  float64(character.PseudoStats.MeleeSpeedMultiplier),
 		proto.PseudoStat_PseudoStatRangedSpeedMultiplier: float64(character.PseudoStats.RangedSpeedMultiplier),
+		proto.PseudoStat_PseudoStatCastSpeedMultiplier:   float64(character.PseudoStats.CastSpeedMultiplier),
 		proto.PseudoStat_PseudoStatBlockValuePerStrength: float64(character.PseudoStats.BlockValuePerStrength),
 
 		proto.PseudoStat_BonusPhysicalDamage: float64(character.PseudoStats.BonusPhysicalDamage),
