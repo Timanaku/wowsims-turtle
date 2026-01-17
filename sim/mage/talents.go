@@ -5,7 +5,6 @@ import (
 	"time"
 
 	"github.com/wowsims/classic/sim/core"
-	"github.com/wowsims/classic/sim/core/stats"
 )
 
 func (mage *Mage) ApplyTalents() {
@@ -47,10 +46,6 @@ func (mage *Mage) applyArcaneTalents() {
 
 	// Arcane Meditation
 	mage.PseudoStats.SpiritRegenRateCasting += 0.05 * float64(mage.Talents.ArcaneMeditation)
-
-	if mage.Talents.ArcaneMind > 0 {
-		mage.MultiplyStat(stats.Mana, 1.0+0.02*float64(mage.Talents.ArcaneMind))
-	}
 
 	// Arcane Instability
 	if mage.Talents.ArcaneInstability > 0 {
@@ -334,7 +329,7 @@ func (mage *Mage) registerArcanePowerCD() {
 }
 
 func (mage *Mage) applyImprovedScorch() {
-	if mage.Talents.ImprovedScorch == 0 {
+	if mage.Talents.FireVulnerability == 0 {
 		return
 	}
 

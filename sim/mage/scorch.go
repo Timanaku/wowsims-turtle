@@ -33,7 +33,7 @@ func (mage *Mage) getScorchConfig(rank int) core.SpellConfig {
 	level := ScorchLevel[rank]
 
 	spellCoeff := .429
-	debuffProcChance := []float64{0, .33, .66, 1}[mage.Talents.ImprovedScorch]
+	debuffProcChance := []float64{0, .33, .66, 1}[mage.Talents.FireVulnerability]
 
 	return core.SpellConfig{
 		ActionID:    core.ActionID{SpellID: spellId},

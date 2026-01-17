@@ -26,7 +26,7 @@ const (
 	SpellCode_MageScorch
 )
 
-var TalentTreeSizes = [3]int{16, 16, 17}
+var TalentTreeSizes = [3]int{19, 17, 19}
 
 func RegisterMage() {
 	core.RegisterAgentFactory(
@@ -58,15 +58,15 @@ type Mage struct {
 	ArcaneMissilesTickSpell []*core.Spell
 	BlastWave               []*core.Spell
 	Blizzard                []*core.Spell
-	Counterspell			*core.Spell
-	Evocation				*core.Spell
+	Counterspell            *core.Spell
+	Evocation               *core.Spell
 	Fireball                []*core.Spell
 	FireBlast               []*core.Spell
 	Flamestrike             []*core.Spell
 	Frostbolt               []*core.Spell
 	IceBarrier              []*core.Spell
 	Ignite                  *core.Spell
-	igniteTick		 		*core.Spell
+	igniteTick              *core.Spell
 	ManaGem                 []*core.Spell
 	PresenceOfMind          *core.Spell
 	Pyroblast               []*core.Spell
