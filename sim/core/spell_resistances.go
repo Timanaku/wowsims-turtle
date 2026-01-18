@@ -1,7 +1,7 @@
 package core
 
 import (
-	"github.com/wowsims/classic/sim/core/stats"
+	"github.com/isfir/wowsims-turtle/sim/core/stats"
 )
 
 func (result *SpellResult) applyResistances(sim *Simulation, spell *Spell, isPeriodic bool, attackTable *AttackTable) {

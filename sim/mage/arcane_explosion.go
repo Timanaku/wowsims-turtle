@@ -1,7 +1,7 @@
 package mage
 
 import (
-	"github.com/wowsims/classic/sim/core"
+	"github.com/isfir/wowsims-turtle/sim/core"
 )
 
 const ArcaneExplosionRanks = 6

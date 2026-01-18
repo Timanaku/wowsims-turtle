@@ -131,8 +131,8 @@ const actionIdSets: Record<
 						extraCssClasses: actionId.data.prepullOnly
 							? ['apl-prepull-actions-only']
 							: actionId.data.encounterOnly
-							? ['apl-priority-list-only']
-							: [],
+								? ['apl-priority-list-only']
+								: [],
 					};
 				}),
 				[
@@ -153,8 +153,8 @@ const actionIdSets: Record<
 						extraCssClasses: actionId.data.prepullOnly
 							? ['apl-prepull-actions-only']
 							: actionId.data.encounterOnly
-							? ['apl-priority-list-only']
-							: [],
+								? ['apl-priority-list-only']
+								: [],
 					};
 				}),
 				[

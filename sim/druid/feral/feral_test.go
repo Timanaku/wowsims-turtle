@@ -3,9 +3,9 @@ package feral
 import (
 	"testing"
 
-	_ "github.com/wowsims/classic/sim/common"
-	"github.com/wowsims/classic/sim/core"
-	"github.com/wowsims/classic/sim/core/proto"
+	_ "github.com/isfir/wowsims-turtle/sim/common"
+	"github.com/isfir/wowsims-turtle/sim/core"
+	"github.com/isfir/wowsims-turtle/sim/core/proto"
 )
 
 func init() {

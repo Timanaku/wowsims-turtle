@@ -1,17 +1,6 @@
 import * as PresetUtils from '../core/preset_utils.js';
-import {
-	Consumes,
-	Debuffs,
-	Flask,
-	Food,
-	IndividualBuffs,
-	RaidBuffs,
-	TristateEffect,
-	UnitReference,
-} from '../core/proto/common.js';
-import {
-	HealingPriest_Options as Options,
-} from '../core/proto/priest.js';
+import { Consumes, Debuffs, Flask, Food, IndividualBuffs, RaidBuffs, TristateEffect, UnitReference } from '../core/proto/common.js';
+import { HealingPriest_Options as Options } from '../core/proto/priest.js';
 import { SavedTalents } from '../core/proto/ui.js';
 import DiscApl from './apls/disc.apl.json';
 import HolyApl from './apls/holy.apl.json';
@@ -27,7 +16,7 @@ export const ROTATION_PRESET_DISC = PresetUtils.makePresetAPLRotation('Disc', Di
 export const ROTATION_PRESET_HOLY = PresetUtils.makePresetAPLRotation('Holy', HolyApl);
 
 // Default talents. Uses the wowhead calculator format, make the talents on
-// https://wowhead.com/classic/talent-calc and copy the numbers in the url.
+// https://wowhead.com/talent-calc and copy the numbers in the url.
 export const DiscTalents = {
 	name: 'Disc',
 	data: SavedTalents.create({
@@ -66,5 +55,4 @@ export const DefaultIndividualBuffs = IndividualBuffs.create({
 	blessingOfWisdom: TristateEffect.TristateEffectImproved,
 });
 
-export const DefaultDebuffs = Debuffs.create({
-});
+export const DefaultDebuffs = Debuffs.create({});

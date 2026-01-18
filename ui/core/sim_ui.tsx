@@ -175,7 +175,6 @@ export abstract class SimUI extends Component {
 		this.resultsViewer = new ResultsViewer(resultsViewerElem);
 
 		const socialsContainer = this.rootElem.querySelector('.sim-sidebar-socials') as HTMLElement;
-		socialsContainer.appendChild(SocialLinks.buildDiscordLink());
 		socialsContainer.appendChild(SocialLinks.buildGitHubLink());
 		socialsContainer.appendChild(SocialLinks.buildPatreonLink());
 
@@ -303,13 +302,13 @@ export abstract class SimUI extends Component {
 			const hash = this.hashCode(errorStr);
 			const link = this.toLink();
 			const rngSeed = this.sim.getLastUsedRngSeed();
-			fetch('https://api.github.com/search/issues?q=is:issue+is:open+repo:wowsims/classic+' + hash)
+			fetch('https://api.github.com/search/issues?q=is:issue+is:open+repo:isfir/wowsims-turtle+' + hash)
 				.then(resp => {
 					resp.json().then(issues => {
 						if (issues.total_count > 0) {
 							window.open(issues.items[0].html_url, '_blank');
 						} else {
-							const base_url = 'https://github.com/wowsims/classic/issues/new?assignees=&labels=&title=Crash%20Report%20';
+							const base_url = 'https://github.com/isfir/wowsims-turtle/issues/new?assignees=&labels=&title=Crash%20Report%20';
 							const base = `${base_url}${hash}&body=`;
 							const maxBodyLength = URLMAXLEN - base.length;
 							let issueBody = encodeURIComponent(`Link:\n${link}\n\nRNG Seed: ${rngSeed}\n\n${errorStr}`);

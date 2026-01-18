@@ -42,7 +42,7 @@ character_stats_results: {
   final_stats: 60
   final_stats: 70
   final_stats: 384
-  final_stats: 0
+  final_stats: 111
   final_stats: 65
   final_stats: 0
  }
@@ -127,8 +127,8 @@ dps_results: {
 dps_results: {
  key: "TestP1Shadow-Phase1-AllItems-GarmentsoftheOracle"
  value: {
-  dps: 548.69679
-  tps: 540.107
+  dps: 513.49758
+  tps: 506.40545
  }
 }
 dps_results: {
@@ -153,6 +153,20 @@ dps_results: {
  }
 }
 dps_results: {
+ key: "TestP1Shadow-Phase1-AllItems-TheDefiler'sIntent"
+ value: {
+  dps: 491.30693
+  tps: 484.52658
+ }
+}
+dps_results: {
+ key: "TestP1Shadow-Phase1-AllItems-TheHighlander'sIntent"
+ value: {
+  dps: 491.30693
+  tps: 484.52658
+ }
+}
+dps_results: {
  key: "TestP1Shadow-Phase1-AllItems-VestmentsofFaith"
  value: {
   dps: 511.16006
@@ -162,15 +176,15 @@ dps_results: {
 dps_results: {
  key: "TestP1Shadow-Phase1-AllItems-VestmentsofProphecy"
  value: {
-  dps: 509.39125
-  tps: 502.50585
+  dps: 529.70307
+  tps: 522.0052
  }
 }
 dps_results: {
  key: "TestP1Shadow-Phase1-AllItems-VestmentsofTranscendence"
  value: {
-  dps: 494.35785
-  tps: 488.02658
+  dps: 547.19203
+  tps: 538.74739
  }
 }
 dps_results: {

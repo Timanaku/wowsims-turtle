@@ -1,3 +1,4 @@
+import { BASE_PATH } from '../../constants/other';
 import { Faction, SaygesFortune, Stat } from '../../proto/common';
 import { ActionId } from '../../proto_utils/action_id';
 import {
@@ -345,7 +346,7 @@ export const SaygesDarkFortune = (inputs: ItemStatOption<SaygesFortune>[]) =>
 	makeEnumIndividualBuffInput({
 		direction: IconPickerDirection.Horizontal,
 		values: [
-			{ iconUrl: '/classic/assets/icons/inv_misc_orb_02.jpg', value: SaygesFortune.SaygesUnknown, text: `Sayge's Dark Fortune` },
+			{ iconUrl: `${BASE_PATH}assets/icons/inv_misc_orb_02.jpg`, value: SaygesFortune.SaygesUnknown, text: `Sayge's Dark Fortune` },
 			...inputs.map(input => input.config),
 		],
 		fieldName: 'saygesFortune',

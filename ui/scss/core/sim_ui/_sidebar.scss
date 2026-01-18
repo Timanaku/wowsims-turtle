@@ -15,10 +15,12 @@
 		padding: var(--gap-width);
 		display: flex;
 		flex-direction: column;
+
 		@include media-breakpoint-down(xxl) {
 			padding-left: calc(var(--gap-width-sm) * 2);
 			padding-right: calc(var(--gap-width-sm) * 2);
 		}
+
 		@include media-breakpoint-down(lg) {
 			padding: calc(var(--gap-width-sm) * 2) var(--gap-width-sm);
 			min-height: 0;
@@ -36,6 +38,7 @@
 			display: flex;
 			flex-direction: column;
 			align-items: center;
+
 			@include media-breakpoint-down(xxl) {
 				padding: 0;
 				margin: 0;
@@ -65,6 +68,7 @@
 
 		.sim-sidebar-stats {
 			margin-top: auto;
+
 			@include media-breakpoint-down(lg) {
 				margin-top: 0;
 			}

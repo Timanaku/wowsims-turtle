@@ -11,15 +11,31 @@ export enum Phase {
 
 export const CURRENT_PHASE = Phase.Phase6;
 
-// Github pages serves our site under the /classic directory
-export const REPO_NAME = 'classic';
+// Site is served from root
+export const BASE_PATH = import.meta.env.BASE_URL;
+export const REPO_NAME = BASE_PATH === '/' ? '' : BASE_PATH.replace(/^\//, '').replace(/\/$/, '');
 
 // Get 'elemental_shaman', the pathname part after the repo name
 const pathnameParts = window.location.pathname.split('/');
-const repoPartIdx = pathnameParts.findIndex(part => part == REPO_NAME);
-export const SPEC_DIRECTORY = repoPartIdx == -1 ? '' : pathnameParts[repoPartIdx + 1];
+let specDirectory = '';
+if (REPO_NAME) {
+	const repoPartIdx = pathnameParts.findIndex(part => part == REPO_NAME);
+	specDirectory = repoPartIdx == -1 ? '' : pathnameParts[repoPartIdx + 1];
+} else {
+	// No repo prefix, spec is first non-empty part after leading slash
+	specDirectory = pathnameParts[1] || '';
+}
+export const SPEC_DIRECTORY = specDirectory;
 
-export const GLOBAL_DISPLAY_STATS = [Stat.StatHealth, Stat.StatStamina, Stat.StatArcaneResistance, Stat.StatFireResistance, Stat.StatNatureResistance, Stat.StatFrostResistance, Stat.StatShadowResistance];
+export const GLOBAL_DISPLAY_STATS = [
+	Stat.StatHealth,
+	Stat.StatStamina,
+	Stat.StatArcaneResistance,
+	Stat.StatFireResistance,
+	Stat.StatNatureResistance,
+	Stat.StatFrostResistance,
+	Stat.StatShadowResistance,
+];
 
 export const GLOBAL_DISPLAY_PSEUDO_STATS = [];
 

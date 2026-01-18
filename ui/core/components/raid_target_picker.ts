@@ -6,13 +6,13 @@ import { Raid } from '../raid.js';
 import { EventID, TypedEvent } from '../typed_event.js';
 
 export interface UnitReferencePickerConfig<ModObject> extends InputConfig<ModObject, UnitReference> {
-	noTargetLabel: string,
-	compChangeEmitter: TypedEvent<void>,
+	noTargetLabel: string;
+	compChangeEmitter: TypedEvent<void>;
 }
 
 interface OptionElemOptions {
-	isDropdown?: boolean,
-	player: Player<any> | null,
+	isDropdown?: boolean;
+	player: Player<any> | null;
 }
 
 // Dropdown menu for selecting a player.
@@ -59,12 +59,15 @@ export class UnitReferencePicker<ModObject> extends Input<ModObject, UnitReferen
 	}
 
 	private makeTargetOptions(): Array<OptionElemOptions> {
-		const unassignedOption = { player: null, isDropdown: true }
-		const playerOptions = this.raid.getPlayers().filter(player => player != null).map(player => {
-			return { player: player, isDropdown: true }
-		});
+		const unassignedOption = { player: null, isDropdown: true };
+		const playerOptions = this.raid
+			.getPlayers()
+			.filter(player => player != null)
+			.map(player => {
+				return { player: player, isDropdown: true };
+			});
 
-		return [unassignedOption, ...playerOptions]
+		return [unassignedOption, ...playerOptions];
 	}
 
 	private updateOptions(eventID: EventID) {
@@ -113,8 +116,7 @@ export class UnitReferencePicker<ModObject> extends Input<ModObject, UnitReferen
 
 		const optionData = this.currentOptions.find(optionData => optionData.player == this.curPlayer);
 
-		if (optionData)
-			this.buttonElem.innerHTML = UnitReferencePicker.makeOptionElem({ player: optionData.player }).outerHTML;
+		if (optionData) this.buttonElem.innerHTML = UnitReferencePicker.makeOptionElem({ player: optionData.player }).outerHTML;
 	}
 
 	static makeOptionElem(data: OptionElemOptions): HTMLElement {
@@ -132,12 +134,12 @@ export class UnitReferencePicker<ModObject> extends Input<ModObject, UnitReferen
 					</div>
 				</div>
 			</div>
-		`
+		`;
 
 		if (data.isDropdown) {
 			playerFragment.innerHTML = `
 				<a class="dropdown-option" href="javascript:void(0) role="button">${playerFragment.innerHTML}</a>
-			`
+			`;
 		}
 
 		return playerFragment.children[0] as HTMLElement;

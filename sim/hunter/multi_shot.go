@@ -3,8 +3,8 @@ package hunter
 import (
 	"time"
 
-	"github.com/wowsims/classic/sim/core"
-	"github.com/wowsims/classic/sim/core/proto"
+	"github.com/isfir/wowsims-turtle/sim/core"
+	"github.com/isfir/wowsims-turtle/sim/core/proto"
 )
 
 func (hunter *Hunter) getMultiShotConfig(rank int, timer *core.Timer) core.SpellConfig {

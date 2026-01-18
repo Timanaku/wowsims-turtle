@@ -1,9 +1,9 @@
 package item_sets
 
 import (
-	"github.com/wowsims/classic/sim/core"
-	"github.com/wowsims/classic/sim/core/proto"
-	"github.com/wowsims/classic/sim/core/stats"
+	"github.com/isfir/wowsims-turtle/sim/core"
+	"github.com/isfir/wowsims-turtle/sim/core/proto"
+	"github.com/isfir/wowsims-turtle/sim/core/stats"
 )
 
 // Keep these in alphabetical order.

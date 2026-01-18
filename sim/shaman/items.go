@@ -4,7 +4,7 @@ import (
 	"slices"
 	"time"
 
-	"github.com/wowsims/classic/sim/core"
+	"github.com/isfir/wowsims-turtle/sim/core"
 )
 
 const (

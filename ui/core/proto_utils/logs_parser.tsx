@@ -769,10 +769,13 @@ export class ResourceChangedLog extends SimLog {
 					<strong className={resourceClass}>
 						{signedDiff.toFixed(1)} {resourceName}
 					</strong>
-					{this.target ? <>{` on `} {this.target?.toHTML()}</> : null}
+					{this.target ? (
+						<>
+							{` on `} {this.target?.toHTML()}
+						</>
+					) : null}
 					{` from `}
-					{this.newActionIdLink(this.actionId!)}.
-					({this.valueBefore.toFixed(1)} &rarr; {this.valueAfter.toFixed(1)})
+					{this.newActionIdLink(this.actionId!)}. ({this.valueBefore.toFixed(1)} &rarr; {this.valueAfter.toFixed(1)})
 				</>
 			);
 		});
@@ -796,7 +799,7 @@ export class ResourceChangedLog extends SimLog {
 		if (match) {
 			const resourceType = stringToResourceType(match[4]);
 			// combo points have an additional Target included in its log lines, adjust for that here
-			const valueBefore = match[13]
+			const valueBefore = match[13];
 			const valueAfter = match[14];
 			return ActionId.fromLogString(match[12])
 				.fill(params.source?.index)

@@ -8,9 +8,9 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/isfir/wowsims-turtle/sim/core"
+	"github.com/isfir/wowsims-turtle/sim/core/proto"
 	"github.com/spf13/cobra"
-	"github.com/wowsims/classic/sim/core"
-	"github.com/wowsims/classic/sim/core/proto"
 	"google.golang.org/protobuf/encoding/protojson"
 )
 

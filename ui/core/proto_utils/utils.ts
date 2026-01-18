@@ -1,4 +1,4 @@
-import { REPO_NAME } from '../constants/other.js';
+import { BASE_PATH, REPO_NAME } from '../constants/other.js';
 import { Player } from '../player.js';
 import { Player as PlayerProto, ResourceType } from '../proto/api.js';
 import {
@@ -223,40 +223,40 @@ export const talentTreeIcons: Record<Class, Array<string>> = {
 
 export const classIcons: Record<Class, string> = {
 	[Class.ClassUnknown]: '',
-	[Class.ClassDruid]: '/classic/assets/icons/class_druid.jpg',
-	[Class.ClassHunter]: '/classic/assets/icons/class_hunter.jpg',
-	[Class.ClassMage]: '/classic/assets/icons/class_mage.jpg',
-	[Class.ClassPaladin]: '/classic/assets/icons/class_paladin.jpg',
-	[Class.ClassPriest]: '/classic/assets/icons/class_priest.jpg',
-	[Class.ClassRogue]: '/classic/assets/icons/class_rogue.jpg',
-	[Class.ClassShaman]: '/classic/assets/icons/class_shaman.jpg',
-	[Class.ClassWarlock]: '/classic/assets/icons/class_warlock.jpg',
-	[Class.ClassWarrior]: '/classic/assets/icons/class_warrior.jpg',
+	[Class.ClassDruid]: `${BASE_PATH}assets/icons/class_druid.jpg`,
+	[Class.ClassHunter]: `${BASE_PATH}assets/icons/class_hunter.jpg`,
+	[Class.ClassMage]: `${BASE_PATH}assets/icons/class_mage.jpg`,
+	[Class.ClassPaladin]: `${BASE_PATH}assets/icons/class_paladin.jpg`,
+	[Class.ClassPriest]: `${BASE_PATH}assets/icons/class_priest.jpg`,
+	[Class.ClassRogue]: `${BASE_PATH}assets/icons/class_rogue.jpg`,
+	[Class.ClassShaman]: `${BASE_PATH}assets/icons/class_shaman.jpg`,
+	[Class.ClassWarlock]: `${BASE_PATH}assets/icons/class_warlock.jpg`,
+	[Class.ClassWarrior]: `${BASE_PATH}assets/icons/class_warrior.jpg`,
 };
 
 export const titleIcons: Record<Spec, string> = {
-	[Spec.SpecBalanceDruid]: '/classic/assets/icons/spell_nature_starfall.jpg',
-	[Spec.SpecFeralDruid]: '/classic/assets/icons/ability_druid_catform.jpg',
-	[Spec.SpecFeralTankDruid]: '/classic/assets/icons/ability_racial_bearform.jpg',
-	[Spec.SpecRestorationDruid]: '/classic/assets/icons/spell_nature_healingtouch.jpg',
-	[Spec.SpecElementalShaman]: '/classic/assets/icons/spell_nature_lightning.jpg',
-	[Spec.SpecEnhancementShaman]: '/classic/assets/icons/ability_shaman_stormstrike.jpg',
-	[Spec.SpecRestorationShaman]: '/classic/assets/icons/spell_nature_magicimmunity.jpg',
-	[Spec.SpecWardenShaman]: '/classic/assets/icons/spell_shaman_lavaflow.jpg',
-	[Spec.SpecHunter]: '/classic/assets/icons/class_hunter.jpg',
-	[Spec.SpecMage]: '/classic/assets/icons/class_mage.jpg',
-	[Spec.SpecRogue]: '/classic/assets/icons/class_rogue.jpg',
-	[Spec.SpecHolyPaladin]: '/classic/assets/icons/spell_holy_holybolt.jpg',
-	[Spec.SpecProtectionPaladin]: '/classic/assets/icons/spell_holy_devotionaura.jpg',
-	[Spec.SpecRetributionPaladin]: '/classic/assets/icons/spell_holy_auraoflight.jpg',
-	[Spec.SpecHealingPriest]: '/classic/assets/icons/spell_holy_guardianspirit.jpg',
-	[Spec.SpecShadowPriest]: '/classic/assets/icons/class_priest.jpg',
-	[Spec.SpecWarlock]: '/classic/assets/icons/class_warlock.jpg',
-	[Spec.SpecWarrior]: '/classic/assets/icons/class_warrior.jpg',
-	[Spec.SpecTankWarrior]: '/classic/assets/icons/ability_warrior_defensivestance.jpg',
+	[Spec.SpecBalanceDruid]: `${BASE_PATH}assets/icons/spell_nature_starfall.jpg`,
+	[Spec.SpecFeralDruid]: `${BASE_PATH}assets/icons/ability_druid_catform.jpg`,
+	[Spec.SpecFeralTankDruid]: `${BASE_PATH}assets/icons/ability_racial_bearform.jpg`,
+	[Spec.SpecRestorationDruid]: `${BASE_PATH}assets/icons/spell_nature_healingtouch.jpg`,
+	[Spec.SpecElementalShaman]: `${BASE_PATH}assets/icons/spell_nature_lightning.jpg`,
+	[Spec.SpecEnhancementShaman]: `${BASE_PATH}assets/icons/ability_shaman_stormstrike.jpg`,
+	[Spec.SpecRestorationShaman]: `${BASE_PATH}assets/icons/spell_nature_magicimmunity.jpg`,
+	[Spec.SpecWardenShaman]: `${BASE_PATH}assets/icons/spell_shaman_lavaflow.jpg`,
+	[Spec.SpecHunter]: `${BASE_PATH}assets/icons/class_hunter.jpg`,
+	[Spec.SpecMage]: `${BASE_PATH}assets/icons/class_mage.jpg`,
+	[Spec.SpecRogue]: `${BASE_PATH}assets/icons/class_rogue.jpg`,
+	[Spec.SpecHolyPaladin]: `${BASE_PATH}assets/icons/spell_holy_holybolt.jpg`,
+	[Spec.SpecProtectionPaladin]: `${BASE_PATH}assets/icons/spell_holy_devotionaura.jpg`,
+	[Spec.SpecRetributionPaladin]: `${BASE_PATH}assets/icons/spell_holy_auraoflight.jpg`,
+	[Spec.SpecHealingPriest]: `${BASE_PATH}assets/icons/spell_holy_guardianspirit.jpg`,
+	[Spec.SpecShadowPriest]: `${BASE_PATH}assets/icons/class_priest.jpg`,
+	[Spec.SpecWarlock]: `${BASE_PATH}assets/icons/class_warlock.jpg`,
+	[Spec.SpecWarrior]: `${BASE_PATH}assets/icons/class_warrior.jpg`,
+	[Spec.SpecTankWarrior]: `${BASE_PATH}assets/icons/ability_warrior_defensivestance.jpg`,
 };
 
-export const raidSimIcon = '/classic/assets/img/raid_icon.png';
+export const raidSimIcon = `${BASE_PATH}assets/img/raid_icon.png`;
 export const raidSimLabel = 'Full Raid Sim';
 
 // Converts '1231321-12313123-0' to [40, 21, 0].
@@ -288,7 +288,7 @@ enum IconSizes {
 export function getSpecIcon(klass: Class, specNumber: number, size: IconSizes = IconSizes.Medium): string {
 	const fileName = talentTreeIcons[klass][specNumber];
 
-	return `/classic/assets/icons/${fileName}`;
+	return `${BASE_PATH}assets/icons/${fileName}`;
 }
 
 // Returns the icon for a given spec based on talent point allocation.
@@ -300,18 +300,18 @@ export function getTalentTreeIcon(spec: Spec, talentsString: string, size: IconS
 
 	const fileName = talentTreeIcons[specToClass[spec]][specNumber];
 
-	return `/classic/assets/icons/${fileName}`;
+	return `${BASE_PATH}assets/icons/${fileName}`;
 }
 
 // Gets the URL for the individual sim corresponding to the given spec.
-const specSiteUrlTemplate = new URL(`${window.location.protocol}//${window.location.host}/${REPO_NAME}/SPEC/`);
+const specSiteUrlTemplate = new URL(`${window.location.protocol}//${window.location.host}${BASE_PATH}SPEC/`);
 export function getSpecSiteUrl(spec: Spec): string {
 	let specString = Spec[spec]; // Returns 'SpecBalanceDruid' for BalanceDruid.
 	specString = specString.substring('Spec'.length); // 'BalanceDruid'
 	specString = camelToSnakeCase(specString); // 'balance_druid'
 	return specSiteUrlTemplate.toString().replace('SPEC', specString);
 }
-export const raidSimSiteUrl = new URL(`${window.location.protocol}//${window.location.host}/${REPO_NAME}/raid/`).toString();
+export const raidSimSiteUrl = new URL(`${window.location.protocol}//${window.location.host}${BASE_PATH}raid/`).toString();
 
 export function cssClassForClass(klass: Class): string {
 	return classNames[klass].toLowerCase().replace(/\s/g, '-');

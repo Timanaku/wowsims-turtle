@@ -4,9 +4,9 @@ import (
 	"math"
 	"testing"
 
-	"github.com/wowsims/classic/sim/core/proto"
-	"github.com/wowsims/classic/sim/core/simsignals"
-	"github.com/wowsims/classic/sim/core/stats"
+	"github.com/isfir/wowsims-turtle/sim/core/proto"
+	"github.com/isfir/wowsims-turtle/sim/core/simsignals"
+	"github.com/isfir/wowsims-turtle/sim/core/stats"
 )
 
 func Test_PartialResistsVsPlayer(t *testing.T) {

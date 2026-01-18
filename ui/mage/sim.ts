@@ -29,7 +29,7 @@ const SPEC_CONFIG = registerSpecConfig(Spec.SpecMage, {
 		Stat.StatSpellCrit,
 		Stat.StatMP5,
 	],
-	epPseudoStats: [PseudoStat.PseudoStatCastSpeedMultiplier,],
+	epPseudoStats: [PseudoStat.PseudoStatCastSpeedMultiplier],
 	// Reference stat against which to calculate EP. I think all classes use either spell power or attack power.
 	epReferenceStat: Stat.StatSpellDamage,
 	// Which stats to display in the Character Stats section, at the bottom of the left-hand sidebar.
@@ -56,19 +56,21 @@ const SPEC_CONFIG = registerSpecConfig(Spec.SpecMage, {
 		// Default equipped gear.
 		gear: Presets.DefaultGear.gear,
 		// Default EP weights for sorting gear in the gear picker.
-		epWeights: Stats.fromMap({
-			[Stat.StatIntellect]: 0.3,
-			[Stat.StatSpellPower]: 1,
-			[Stat.StatSpellDamage]: 1,
-			[Stat.StatArcanePower]: 1,
-			[Stat.StatFirePower]: 1,
-			[Stat.StatFrostPower]: 1,
-			[Stat.StatSpellHit]: 0.0,
-			[Stat.StatSpellCrit]: 13.18,
-		},
+		epWeights: Stats.fromMap(
+			{
+				[Stat.StatIntellect]: 0.3,
+				[Stat.StatSpellPower]: 1,
+				[Stat.StatSpellDamage]: 1,
+				[Stat.StatArcanePower]: 1,
+				[Stat.StatFirePower]: 1,
+				[Stat.StatFrostPower]: 1,
+				[Stat.StatSpellHit]: 0.0,
+				[Stat.StatSpellCrit]: 13.18,
+			},
 			{
 				[PseudoStat.PseudoStatCastSpeedMultiplier]: 15.7,
-			}),
+			},
+		),
 		// Default consumes settings.
 		consumes: Presets.DefaultConsumes,
 		// Default talents.

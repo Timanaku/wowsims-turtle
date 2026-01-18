@@ -3,9 +3,9 @@ package balance
 import (
 	"testing"
 
-	_ "github.com/wowsims/classic/sim/common" // imported to get caster sets included. (we use spellfire here)
-	"github.com/wowsims/classic/sim/core"
-	"github.com/wowsims/classic/sim/core/proto"
+	_ "github.com/isfir/wowsims-turtle/sim/common" // imported to get caster sets included. (we use spellfire here)
+	"github.com/isfir/wowsims-turtle/sim/core"
+	"github.com/isfir/wowsims-turtle/sim/core/proto"
 )
 
 func init() {

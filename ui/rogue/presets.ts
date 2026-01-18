@@ -68,8 +68,20 @@ export const ROTATION_PRESET_SINISTER_STRIKE_SWEATY = PresetUtils.makePresetAPLR
 export const ROTATION_PRESET_SINISTER_STRIKE_IEA = PresetUtils.makePresetAPLRotation('Improved Expose Armor (SS)', SinisterStrikeIEAAPL, {});
 
 export const APLPresets = {
-	[Phase.Phase1]: [ROTATION_PRESET_BACKSTAB, ROTATION_PRESET_SINISTER_STRIKE, ROTATION_PRESET_BACKSTAB_SWEATY, ROTATION_PRESET_SINISTER_STRIKE_SWEATY, ROTATION_PRESET_SINISTER_STRIKE_IEA],
-	[Phase.Phase2]: [ROTATION_PRESET_BACKSTAB, ROTATION_PRESET_SINISTER_STRIKE, ROTATION_PRESET_BACKSTAB_SWEATY, ROTATION_PRESET_SINISTER_STRIKE_SWEATY, ROTATION_PRESET_SINISTER_STRIKE_IEA],
+	[Phase.Phase1]: [
+		ROTATION_PRESET_BACKSTAB,
+		ROTATION_PRESET_SINISTER_STRIKE,
+		ROTATION_PRESET_BACKSTAB_SWEATY,
+		ROTATION_PRESET_SINISTER_STRIKE_SWEATY,
+		ROTATION_PRESET_SINISTER_STRIKE_IEA,
+	],
+	[Phase.Phase2]: [
+		ROTATION_PRESET_BACKSTAB,
+		ROTATION_PRESET_SINISTER_STRIKE,
+		ROTATION_PRESET_BACKSTAB_SWEATY,
+		ROTATION_PRESET_SINISTER_STRIKE_SWEATY,
+		ROTATION_PRESET_SINISTER_STRIKE_IEA,
+	],
 };
 
 //Need to add main hand equip logic or talent/rotation logic to map to Auto APL
@@ -87,16 +99,19 @@ export const DefaultAPLIEA = APLPresets[Phase.Phase2][4];
 ///////////////////////////////////////////////////////////////////////////
 
 // Default talents. Uses the wowhead calculator format, make the talents on
-// https://wowhead.com/classic/talent-calc and copy the numbers in the url.
+// https://wowhead.com/talent-calc and copy the numbers in the url.
 
 // Preset name must be unique. Ex: 'Backstab DPS' cannot be used as a name more than once
 
-export const CombatBackstabTalents = PresetUtils.makePresetTalents(
-	'Backstab',
-	SavedTalents.create({ talentsString: '005023104-0233050020550100221-05' }),
+export const CombatBackstabTalents = PresetUtils.makePresetTalents('Backstab', SavedTalents.create({ talentsString: '005023104-0233050020550100221-05' }));
+export const CombatSinisterStrikeTalents = PresetUtils.makePresetTalents(
+	'Sinister Strike',
+	SavedTalents.create({ talentsString: '005323105-0240052020050150231' }),
 );
-export const CombatSinisterStrikeTalents = PresetUtils.makePresetTalents('Sinister Strike', SavedTalents.create({ talentsString: '005323105-0240052020050150231' }));
-export const CombatSinisterStrikeIEATalents = PresetUtils.makePresetTalents('Improved Expose Armor (SS)', SavedTalents.create({ talentsString: '005323123-0240052020050150231' }));
+export const CombatSinisterStrikeIEATalents = PresetUtils.makePresetTalents(
+	'Improved Expose Armor (SS)',
+	SavedTalents.create({ talentsString: '005323123-0240052020050150231' }),
+);
 
 export const TalentPresets = {
 	[Phase.Phase1]: [CombatBackstabTalents, CombatSinisterStrikeTalents, CombatSinisterStrikeIEATalents],

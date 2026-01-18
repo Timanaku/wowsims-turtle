@@ -1,9 +1,9 @@
 package naxxramas
 
 import (
-	"github.com/wowsims/classic/sim/core"
-	"github.com/wowsims/classic/sim/core/proto"
-	"github.com/wowsims/classic/sim/core/stats"
+	"github.com/isfir/wowsims-turtle/sim/core"
+	"github.com/isfir/wowsims-turtle/sim/core/proto"
+	"github.com/isfir/wowsims-turtle/sim/core/stats"
 )
 
 func addKelThuzad25(bossPrefix string) {

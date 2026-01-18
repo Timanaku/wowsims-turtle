@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/wowsims/classic/sim/core/proto"
+	"github.com/isfir/wowsims-turtle/sim/core/proto"
 )
 
 func ParseTurtleSpellDB(spellCSV, spellIconCSV string) []*proto.IconData {

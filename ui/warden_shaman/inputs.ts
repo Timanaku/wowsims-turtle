@@ -8,8 +8,7 @@ import { ShamanSyncType } from '../core/proto/shaman.js';
 export const SyncTypeInput = InputHelpers.makeSpecOptionsEnumInput<Spec.SpecEnhancementShaman>({
 	fieldName: 'syncType',
 	label: 'Sync/Stagger Setting',
-	labelTooltip:
-		`Choose your sync or stagger option Perfect
+	labelTooltip: `Choose your sync or stagger option Perfect
 		<ul>
 			<li><div>Auto: Will auto pick sync options based on your weapons attack speeds</div></li>
 			<li><div>None: No Sync or Staggering, used for mismatched weapon speeds</div></li>
@@ -17,7 +16,7 @@ export const SyncTypeInput = InputHelpers.makeSpecOptionsEnumInput<Spec.SpecEnha
 			<li><div>Delayed Offhand: Adds a slight delay to the offhand attacks while staying within the 0.5s flurry ICD window</div></li>
 		</ul>`,
 	values: [
-		{ name: "Automatic", value: ShamanSyncType.Auto },
+		{ name: 'Automatic', value: ShamanSyncType.Auto },
 		{ name: 'None', value: ShamanSyncType.NoSync },
 		{ name: 'Perfect Sync', value: ShamanSyncType.SyncMainhandOffhandSwings },
 		{ name: 'Delayed Offhand', value: ShamanSyncType.DelayOffhandSwings },

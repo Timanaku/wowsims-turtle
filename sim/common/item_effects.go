@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/wowsims/classic/sim/common/guardians"
-	"github.com/wowsims/classic/sim/common/itemhelpers"
-	"github.com/wowsims/classic/sim/core"
-	"github.com/wowsims/classic/sim/core/proto"
-	"github.com/wowsims/classic/sim/core/stats"
+	"github.com/isfir/wowsims-turtle/sim/common/guardians"
+	"github.com/isfir/wowsims-turtle/sim/common/itemhelpers"
+	"github.com/isfir/wowsims-turtle/sim/core"
+	"github.com/isfir/wowsims-turtle/sim/core/proto"
+	"github.com/isfir/wowsims-turtle/sim/core/stats"
 )
 
 // Ordered by ID

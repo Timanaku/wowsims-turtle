@@ -3,8 +3,8 @@ package priest
 import (
 	"time"
 
-	"github.com/wowsims/classic/sim/core"
-	"github.com/wowsims/classic/sim/core/stats"
+	"github.com/isfir/wowsims-turtle/sim/core"
+	"github.com/isfir/wowsims-turtle/sim/core/stats"
 )
 
 ///////////////////////////////////////////////////////////////////////////

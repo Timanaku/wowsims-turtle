@@ -1,14 +1,7 @@
 import { MAX_PARTY_SIZE, Party } from './party.js';
 import { Player } from './player.js';
 import { Raid as RaidProto } from './proto/api.js';
-import {
-	Class,
-	Debuffs,
-	RaidBuffs,
-	TristateEffect,
-	UnitReference,
-	UnitReference_Type as UnitType,
-} from './proto/common.js';
+import { Class, Debuffs, RaidBuffs, TristateEffect, UnitReference, UnitReference_Type as UnitType } from './proto/common.js';
 import { Sim } from './sim.js';
 import { EventID, TypedEvent } from './typed_event.js';
 import { sum } from './utils.js';
@@ -56,13 +49,10 @@ export class Raid {
 
 		this.numActivePartiesChangeEmitter.on(eventID => this.compChangeEmitter.emit(eventID));
 
-		this.changeEmitter = TypedEvent.onAny([
-			this.compChangeEmitter,
-			this.buffsChangeEmitter,
-			this.debuffsChangeEmitter,
-			this.tanksChangeEmitter,
-			this.targetDummiesChangeEmitter,
-		], 'RaidChange');
+		this.changeEmitter = TypedEvent.onAny(
+			[this.compChangeEmitter, this.buffsChangeEmitter, this.debuffsChangeEmitter, this.tanksChangeEmitter, this.targetDummiesChangeEmitter],
+			'RaidChange',
+		);
 
 		this.changeEmitter.on(() => {
 			this.activePlayers = [];
@@ -124,8 +114,7 @@ export class Raid {
 	}
 
 	setBuffs(eventID: EventID, newBuffs: RaidBuffs) {
-		if (RaidBuffs.equals(this.buffs, newBuffs))
-			return;
+		if (RaidBuffs.equals(this.buffs, newBuffs)) return;
 
 		// Make a defensive copy
 		this.buffs = RaidBuffs.clone(newBuffs);
@@ -139,8 +128,7 @@ export class Raid {
 	}
 
 	setDebuffs(eventID: EventID, newDebuffs: Debuffs) {
-		if (Debuffs.equals(this.debuffs, newDebuffs))
-			return;
+		if (Debuffs.equals(this.debuffs, newDebuffs)) return;
 
 		// Make a defensive copy
 		this.debuffs = Debuffs.clone(newDebuffs);
@@ -153,8 +141,7 @@ export class Raid {
 	}
 
 	setTanks(eventID: EventID, newTanks: Array<UnitReference>) {
-		if (this.tanks.length == newTanks.length && this.tanks.every((tank, i) => UnitReference.equals(tank, newTanks[i])))
-			return;
+		if (this.tanks.length == newTanks.length && this.tanks.every((tank, i) => UnitReference.equals(tank, newTanks[i]))) return;
 
 		// Make a defensive copy
 		this.tanks = newTanks.map(tank => UnitReference.clone(tank));
@@ -166,8 +153,7 @@ export class Raid {
 	}
 
 	setTargetDummies(eventID: EventID, newTargetDummies: number) {
-		if (this.targetDummies == newTargetDummies)
-			return;
+		if (this.targetDummies == newTargetDummies) return;
 
 		this.targetDummies = newTargetDummies;
 		this.targetDummiesChangeEmitter.emit(eventID);

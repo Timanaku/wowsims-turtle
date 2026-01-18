@@ -1,7 +1,7 @@
 package druid
 
 import (
-	"github.com/wowsims/classic/sim/core"
+	"github.com/isfir/wowsims-turtle/sim/core"
 )
 
 func (druid *Druid) registerMaulSpell() {

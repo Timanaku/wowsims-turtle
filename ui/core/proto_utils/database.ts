@@ -1,4 +1,5 @@
 import { MAX_CHARACTER_LEVEL } from '../constants/mechanics.js';
+import { BASE_PATH, REPO_NAME } from '../constants/other.js';
 import { Class, EquipmentSpec, ItemRandomSuffix, ItemSlot, ItemSpec, ItemSwap, PresetEncounter, PresetTarget, SimDatabase } from '../proto/common.js';
 import { IconData, UIDatabase, UIEnchant as Enchant, UIFaction as Faction, UIItem as Item, UINPC as Npc, UIZone as Zone } from '../proto/ui.js';
 import { distinct } from '../utils.js';
@@ -6,10 +7,10 @@ import { EquippedItem } from './equipped_item.js';
 import { Gear, ItemSwapGear } from './gear.js';
 import { getEligibleEnchantSlots, getEligibleItemSlots, itemTypeToSlotsMap } from './utils.js';
 
-const dbUrlJson = '/classic/assets/database/db.json';
-const dbUrlBin = '/classic/assets/database/db.bin';
-const leftoversUrlJson = '/classic/assets/database/leftover_db.json';
-const leftoversUrlBin = '/classic/assets/database/leftover_db.bin';
+const dbUrlJson = `${BASE_PATH}assets/database/db.json`;
+const dbUrlBin = `${BASE_PATH}assets/database/db.bin`;
+const leftoversUrlJson = `${BASE_PATH}assets/database/leftover_db.json`;
+const leftoversUrlBin = `${BASE_PATH}assets/database/leftover_db.bin`;
 // When changing this value, don't forget to change the html <link> for preloading!
 const READ_JSON = true;
 const RANK_REGEX = /Rank ([0-9]+)/g;
@@ -102,13 +103,13 @@ export class Database {
 
 		db.items.forEach(
 			item =>
-				(this.itemIcons[item.id] = Promise.resolve(
-					IconData.create({
-						id: item.id,
-						name: item.name,
-						icon: item.icon,
-					}),
-				)),
+			(this.itemIcons[item.id] = Promise.resolve(
+				IconData.create({
+					id: item.id,
+					name: item.name,
+					icon: item.icon,
+				}),
+			)),
 		);
 
 		db.itemIcons.forEach(data => (this.itemIcons[data.id] = Promise.resolve(data)));

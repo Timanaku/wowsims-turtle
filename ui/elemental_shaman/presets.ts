@@ -53,7 +53,6 @@ export const GearPresets = {
 	[Phase.Phase4]: [GearPhase4],
 	[Phase.Phase5]: [GearPhase5],
 	[Phase.Phase6]: [GearPhase6],
-
 };
 
 export const DefaultGear = GearPresets[Phase.Phase2][0];
@@ -71,7 +70,6 @@ export const APLPresets = {
 	[Phase.Phase4]: [],
 	[Phase.Phase5]: [],
 	[Phase.Phase6]: [],
-
 };
 
 export const DefaultAPL = APLPresets[Phase.Phase1][0];

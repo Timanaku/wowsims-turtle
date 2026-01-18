@@ -5,7 +5,7 @@ import (
 	"math"
 	"time"
 
-	"github.com/wowsims/classic/sim/core/proto"
+	"github.com/isfir/wowsims-turtle/sim/core/proto"
 )
 
 type MoveModifier struct {

@@ -1,19 +1,17 @@
-import {
-	APLAction,
-	APLPrepullAction,
-} from '../proto/apl.js';
-import {
-	ActionID as ActionIdProto,
-	Cooldowns,
-} from '../proto/common.js';
+import { APLAction, APLPrepullAction } from '../proto/apl.js';
+import { ActionID as ActionIdProto, Cooldowns } from '../proto/common.js';
 
 export function prepullPotionAction(doAt?: string): APLPrepullAction {
-	return APLPrepullAction.fromJsonString(`{"action":{"castSpell":{"spellId":{"otherId":"OtherActionPotion"}}},"doAtValue":{"const":{"val":"${doAt || '-1s'}"}}}`);
+	return APLPrepullAction.fromJsonString(
+		`{"action":{"castSpell":{"spellId":{"otherId":"OtherActionPotion"}}},"doAtValue":{"const":{"val":"${doAt || '-1s'}"}}}`,
+	);
 }
 
 export function autocastCooldownsAction(startAt?: string): APLAction {
 	if (startAt) {
-		return APLAction.fromJsonString(`{"condition":{"cmp":{"op":"OpGt","lhs":{"currentTime":{}},"rhs":{"const":{"val":"${startAt}"}}}},"autocastOtherCooldowns":{}}`);
+		return APLAction.fromJsonString(
+			`{"condition":{"cmp":{"op":"OpGt","lhs":{"currentTime":{}},"rhs":{"const":{"val":"${startAt}"}}}},"autocastOtherCooldowns":{}}`,
+		);
 	} else {
 		return APLAction.fromJsonString(`{"autocastOtherCooldowns":{}}`);
 	}
@@ -33,11 +31,5 @@ export function simpleCooldownActions(cooldowns: Cooldowns): Array<APLAction> {
 }
 
 export function standardCooldownDefaults(cooldowns: Cooldowns, prepotAt?: string, startAutocastCDsAt?: string): [Array<APLPrepullAction>, Array<APLAction>] {
-	return [
-		[prepullPotionAction(prepotAt)],
-		[
-			autocastCooldownsAction(startAutocastCDsAt),
-			simpleCooldownActions(cooldowns),
-		].flat(),
-	];
+	return [[prepullPotionAction(prepotAt)], [autocastCooldownsAction(startAutocastCDsAt), simpleCooldownActions(cooldowns)].flat()];
 }

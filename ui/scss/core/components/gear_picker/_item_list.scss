@@ -37,12 +37,15 @@
 		flex: 1;
 		margin-right: var(--spacer-2);
 	}
+
 	.ilvl-label {
 		width: var(--ilvl-cell-width);
 	}
+
 	.source-label {
 		width: var(--source-cell-width);
 	}
+
 	.ep-label {
 		width: var(--ep-cell-width);
 		display: flex;
@@ -95,6 +98,7 @@
 			outline: 2px solid var(--bs-success);
 		}
 	}
+
 	.selector-modal-list-item-link {
 		display: flex;
 		align-items: center;

@@ -10,9 +10,7 @@ import { EventID } from '../core/typed_event.js';
 export const SelfInnervate = InputHelpers.makeSpecOptionsBooleanIconInput<Spec.SpecRestorationDruid>({
 	fieldName: 'innervateTarget',
 	actionId: () => ActionId.fromSpellId(29166),
-	extraCssClasses: [
-		'within-raid-sim-hide',
-	],
+	extraCssClasses: ['within-raid-sim-hide'],
 	getValue: (player: Player<Spec.SpecRestorationDruid>) => player.getSpecOptions().innervateTarget?.type == UnitType.Player,
 	setValue: (eventID: EventID, player: Player<Spec.SpecRestorationDruid>, newValue: boolean) => {
 		const newOptions = player.getSpecOptions();

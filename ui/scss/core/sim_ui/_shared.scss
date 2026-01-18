@@ -58,6 +58,7 @@ th {
 				min-height: unset;
 			}
 		}
+
 		.sim-content {
 			padding: 0 var(--container-padding) var(--container-padding) var(--container-padding);
 			flex: 4;
@@ -70,6 +71,7 @@ th {
 	.import-export {
 		display: none !important;
 	}
+
 	.sim-sidebar {
 		.sim-sidebar-actions > *:not(.sim-ui-unlaunched-container),
 		.sim-sidebar-results {

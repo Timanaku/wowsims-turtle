@@ -10,9 +10,7 @@ import { EventID } from '../core/typed_event.js';
 export const SelfPowerInfusion = InputHelpers.makeSpecOptionsBooleanIconInput<Spec.SpecHealingPriest>({
 	fieldName: 'powerInfusionTarget',
 	actionId: () => ActionId.fromSpellId(10060),
-	extraCssClasses: [
-		'within-raid-sim-hide',
-	],
+	extraCssClasses: ['within-raid-sim-hide'],
 	getValue: (player: Player<Spec.SpecHealingPriest>) => player.getSpecOptions().powerInfusionTarget?.type == UnitType.Player,
 	setValue: (eventID: EventID, player: Player<Spec.SpecHealingPriest>, newValue: boolean) => {
 		const newOptions = player.getSpecOptions();

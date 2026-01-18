@@ -1,20 +1,20 @@
-@use "sass:map";
+@use 'sass:map';
 
 .player {
-  width: 100%;
-  height: 2.5rem;
+	width: 100%;
+	height: 2.5rem;
 	padding: calc(var(--spacer-1) - 1px) var(--spacer-1);
 	border: $border-default;
 	display: flex;
 	justify-content: space-between;
 	overflow-x: hidden;
-  color: white;
+	color: white;
 
-  &:not([class*="bg-"]) {
-		background: rgba(50,50,50,.5);
+	&:not([class*='bg-']) {
+		background: rgba(50, 50, 50, 0.5);
 	}
 
-  .player-label {
+	.player-label {
 		margin-right: var(--spacer-2);
 		display: flex;
 		align-items: center;
@@ -40,8 +40,8 @@
 }
 
 .player-icon {
-  width: 2rem;
-  height: 2rem;
-  margin-right: map.get($spacers, 1);
-  border-radius: 100%;
+	width: 2rem;
+	height: 2rem;
+	margin-right: map.get($spacers, 1);
+	border-radius: 100%;
 }

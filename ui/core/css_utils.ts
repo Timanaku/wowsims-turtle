@@ -8,7 +8,7 @@ const itemQualityCssClasses: Record<ItemQuality, string> = {
 	[ItemQuality.ItemQualityEpic]: 'item-quality-epic',
 	[ItemQuality.ItemQualityLegendary]: 'item-quality-legendary',
 	[ItemQuality.ItemQualityArtifact]: 'item-quality-artifact',
-	[ItemQuality.ItemQualityHeirloom]: 'item-quality-heirloom'
+	[ItemQuality.ItemQualityHeirloom]: 'item-quality-heirloom',
 };
 export function setItemQualityCssClass(elem: HTMLElement, quality: ItemQuality | null) {
 	Object.values(itemQualityCssClasses).forEach(cssClass => elem.classList.remove(cssClass));

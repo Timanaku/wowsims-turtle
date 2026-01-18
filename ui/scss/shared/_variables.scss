@@ -98,6 +98,7 @@ $custom-breakpoints: (
 // Borders
 $border-color: $gray-600;
 $border-default: 1px solid $border-color;
+
 :root {
 	--border-default: 1px solid var(--bs-border-color);
 }
@@ -251,6 +252,7 @@ $enable-rounded: false;
 $link-color: #a5b1d6;
 $link-decoration: none;
 $link-hover-color: $white;
+
 :root {
 	--link-transition: color 0.15s ease-in-out;
 }

@@ -8,32 +8,38 @@ import { ConfigEnv, defineConfig, PluginOption, UserConfigExport } from 'vite';
 import { checker } from 'vite-plugin-checker';
 
 export const BASE_PATH = path.resolve(__dirname, 'ui');
-export const OUT_DIR = path.join(__dirname, 'dist', 'classic');
+export const OUT_DIR = path.join(__dirname, 'dist');
 
 function serveExternalAssets() {
 	const workerMappings = {
-		'/classic/sim_worker.js': '/classic/local_worker.js',
-		'/classic/net_worker.js': '/classic/net_worker.js',
-		'/classic/lib.wasm': '/classic/lib.wasm',
+		'/sim_worker.js': '/local_worker.js',
+		'/net_worker.js': '/net_worker.js',
+		'/lib.wasm': '/lib.wasm',
 	};
 
 	return {
 		name: 'serve-external-assets',
 		configureServer(server) {
 			server.middlewares.use((req, res, next) => {
-				const url = req.url!;
+				let url = req.url!;
+
+				const basePath = process.env.VITE_BASE || '/';
+				const normalizedBase = basePath.endsWith('/') ? basePath.slice(0, -1) : basePath;
+				if (normalizedBase !== '/' && url.startsWith(normalizedBase)) {
+					url = url.slice(normalizedBase.length) || '/';
+				}
 
 				if (Object.keys(workerMappings).includes(url)) {
 					const targetPath = workerMappings[url as keyof typeof workerMappings];
-					const assetsPath = path.resolve(__dirname, './dist/classic');
-					const requestedPath = path.join(assetsPath, targetPath.replace('/classic/', ''));
+					const assetsPath = path.resolve(__dirname, './dist');
+					const requestedPath = path.join(assetsPath, targetPath);
 					serveFile(res, requestedPath);
 					return;
 				}
 
-				if (url.includes('/classic/assets')) {
+				if (url.includes('/assets')) {
 					const assetsPath = path.resolve(__dirname, './assets');
-					const assetRelativePath = url.split('/classic/assets')[1];
+					const assetRelativePath = url.split('/assets')[1];
 					const requestedPath = path.join(assetsPath, assetRelativePath);
 
 					serveFile(res, requestedPath);
@@ -86,16 +92,16 @@ function determineContentType(filePath: string) {
 }
 
 export const getBaseConfig = ({ command, mode }: ConfigEnv) =>
-({
-	base: '/classic/',
-	root: path.join(__dirname, 'ui'),
-	build: {
-		outDir: OUT_DIR,
-		minify: mode === 'development' ? false : 'terser',
-		sourcemap: command === 'serve' ? 'inline' : false,
-		target: ['es2020'],
-	},
-} satisfies Partial<UserConfigExport>);
+	({
+		base: process.env.VITE_BASE || '/',
+		root: path.join(__dirname, 'ui'),
+		build: {
+			outDir: OUT_DIR,
+			minify: mode === 'development' ? false : 'terser',
+			sourcemap: command === 'serve' ? 'inline' : false,
+			target: ['es2020'],
+		},
+	}) satisfies Partial<UserConfigExport>;
 
 export default defineConfig(({ command, mode }) => {
 	const baseConfig = getBaseConfig({ command, mode });

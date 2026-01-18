@@ -42,10 +42,10 @@ import P6BISGear from './gear_sets/p6.bis.gear.json';
 
 export const GearP2PreBIS = PresetUtils.makePresetGear('P2 Pre-BiS', P2PreBISGear);
 export const GearP2BIS = PresetUtils.makePresetGear('P2 BiS', P2BISGear);
-export const GearP3BIS = PresetUtils.makePresetGear('P3 BiS', P3BISGear)
-export const GearP4BIS = PresetUtils.makePresetGear('P4 BiS', P4BISGear)
-export const GearP5BIS = PresetUtils.makePresetGear('P5 BiS', P5BISGear)
-export const GearP6BIS = PresetUtils.makePresetGear('P6 BiS', P6BISGear)
+export const GearP3BIS = PresetUtils.makePresetGear('P3 BiS', P3BISGear);
+export const GearP4BIS = PresetUtils.makePresetGear('P4 BiS', P4BISGear);
+export const GearP5BIS = PresetUtils.makePresetGear('P5 BiS', P5BISGear);
+export const GearP6BIS = PresetUtils.makePresetGear('P6 BiS', P6BISGear);
 
 export const GearPresets = {
 	[Phase.Phase4]: [GearP2PreBIS, GearP2BIS, GearP3BIS, GearP4BIS, GearP5BIS, GearP6BIS],

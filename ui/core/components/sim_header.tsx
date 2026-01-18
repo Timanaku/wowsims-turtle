@@ -157,7 +157,7 @@ export class SimHeader extends Component {
 
 	private addBugReportLink() {
 		this.addToolbarLink({
-			href: 'https://github.com/wowsims/classic/issues/new/choose',
+			href: 'https://github.com/isfir/wowsims-turtle/issues/new/choose',
 			parent: this.simToolbar,
 			icon: 'fas fa-bug fa-lg',
 			tooltip: 'Report a bug or<br>Request a feature',
@@ -165,7 +165,7 @@ export class SimHeader extends Component {
 	}
 
 	private addDownloadBinaryLink() {
-		const href = 'https://github.com/wowsims/classic/releases';
+		const href = 'https://github.com/isfir/wowsims-turtle/releases';
 		const icon = 'fas fa-gauge-high fa-lg';
 		const parent = this.simToolbar;
 
@@ -214,13 +214,8 @@ export class SimHeader extends Component {
 		container.classList.add('sim-toolbar-socials');
 		this.simToolbar.appendChild(container);
 
-		this.addDiscordLink(container);
 		this.addGitHubLink(container);
 		this.addPatreonLink(container);
-	}
-
-	private addDiscordLink(container: HTMLElement) {
-		container.appendChild(<div className="sim-toolbar-item">{SocialLinks.buildDiscordLink()}</div>);
 	}
 
 	private addGitHubLink(container: HTMLElement) {

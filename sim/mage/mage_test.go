@@ -3,29 +3,29 @@ package mage
 import (
 	"testing"
 
-	_ "github.com/wowsims/classic/sim/common"
-	"github.com/wowsims/classic/sim/core"
-	"github.com/wowsims/classic/sim/core/proto"
+	_ "github.com/isfir/wowsims-turtle/sim/common"
+	"github.com/isfir/wowsims-turtle/sim/core"
+	"github.com/isfir/wowsims-turtle/sim/core/proto"
 )
 
 func init() {
 	RegisterMage()
 }
 
-func TestP1Mage(t *testing.T) {
+func TestMage(t *testing.T) {
 	core.RunTestSuite(t, t.Name(), core.FullCharacterTestSuiteGenerator([]core.CharacterSuiteConfig{
 		{
 			Class:      proto.Class_ClassMage,
 			Phase:      1,
-			Race:       proto.Race_RaceTroll,
-			OtherRaces: []proto.Race{proto.Race_RaceGnome},
+			Race:       proto.Race_RaceGnome,
+			OtherRaces: []proto.Race{proto.Race_RaceTroll},
 
-			Talents:     P1Talents,
-			GearSet:     core.GetGearSet("../../ui/mage/gear_sets", "p0.bis"),
-			Rotation:    core.GetAplRotation("../../ui/mage/apls", "p1"),
+			Talents:     DefaultTalents,
+			GearSet:     core.GetGearSet("../../ui/mage/gear_sets", "bis"),
+			Rotation:    core.GetAplRotation("../../ui/mage/apls", "default"),
 			Buffs:       core.FullBuffs,
-			Consumes:    P1Consumes,
-			SpecOptions: core.SpecOptionsCombo{Label: "DPS", SpecOptions: PlayerOptions},
+			Consumes:    DefaultConsumes,
+			SpecOptions: core.SpecOptionsCombo{Label: "Arcane", SpecOptions: PlayerOptions},
 
 			ItemFilter:      ItemFilters,
 			EPReferenceStat: proto.Stat_StatSpellPower,
@@ -34,26 +34,30 @@ func TestP1Mage(t *testing.T) {
 	}))
 }
 
-var P1Talents = "-0550320003021-2035020310035105"
+var DefaultTalents = "2350550310033311251-50003"
 
 var PlayerOptions = &proto.Player_Mage{
 	Mage: &proto.Mage{
 		Options: &proto.Mage_Options{
-			Armor: proto.Mage_Options_MoltenArmor,
+			Armor: proto.Mage_Options_MageArmor,
 		},
 	},
 }
 
-var P1Consumes = core.ConsumesCombo{
-	Label: "P1-Consumes",
+var DefaultConsumes = core.ConsumesCombo{
+	Label: "Default-Consumes",
 	Consumes: &proto.Consumes{
-		DefaultPotion:  proto.Potions_MajorManaPotion,
-		Flask:          proto.Flask_FlaskOfSupremePower,
-		FirePowerBuff:  proto.FirePowerBuff_ElixirOfGreaterFirepower,
-		FrostPowerBuff: proto.FrostPowerBuff_ElixirOfFrostPower,
-		Food:           proto.Food_FoodRunnTumTuberSurprise,
-		MainHandImbue:  proto.WeaponImbue_BrilliantWizardOil,
-		SpellPowerBuff: proto.SpellPowerBuff_GreaterArcaneElixir,
+		DefaultConjured: proto.Conjured_ConjuredDemonicRune,
+		DefaultPotion:   proto.Potions_MajorManaPotion,
+		Flask:           proto.Flask_FlaskOfSupremePower,
+		FirePowerBuff:   proto.FirePowerBuff_ElixirOfGreaterFirepower,
+		FrostPowerBuff:  proto.FrostPowerBuff_ElixirOfFrostPower,
+		Food:            proto.Food_FoodRunnTumTuberSurprise,
+		MainHandImbue:   proto.WeaponImbue_BrilliantWizardOil,
+		ManaRegenElixir: proto.ManaRegenElixir_MagebloodPotion,
+		SapperExplosive: proto.SapperExplosive_SapperGoblinSapper,
+		SpellPowerBuff:  proto.SpellPowerBuff_GreaterArcaneElixir,
+		ZanzaBuff:       proto.ZanzaBuff_CerebralCortexCompound,
 	},
 }
 

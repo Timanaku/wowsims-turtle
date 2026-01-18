@@ -9,7 +9,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/wowsims/classic/sim/core/proto"
+	"github.com/isfir/wowsims-turtle/sim/core/proto"
 )
 
 func compareValue(t *testing.T, loc string, vst reflect.Value, vmt reflect.Value, baseFloatTolerance float64) {

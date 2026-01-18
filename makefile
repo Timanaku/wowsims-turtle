@@ -1,5 +1,5 @@
-BASE_DIR := classic
-OUT_DIR := dist/$(BASE_DIR)
+BASE_DIR :=
+OUT_DIR := dist
 TS_CORE_SRC := $(shell find ui/core -name '*.ts' -type f)
 ASSETS_INPUT := $(shell find assets/ -type f)
 ASSETS := $(patsubst assets/%,$(OUT_DIR)/assets/%,$(ASSETS_INPUT))
@@ -60,11 +60,11 @@ ui/core/index.ts: $(TS_CORE_SRC)
 clean:
 	rm -rf ui/core/proto/*.ts \
 	  sim/core/proto/*.pb.go \
-	  wowsimclassic \
-	  wowsimclassic-windows.exe \
-	  wowsimclassic-amd64-darwin \
-	  wowsimclassic-arm64-darwin \
-	  wowsimclassic-amd64-linux \
+	  wowsims-turtle \
+	  wowsims-turtle-windows.exe \
+	  wowsims-turtle-amd64-darwin \
+	  wowsims-turtle-arm64-darwin \
+	  wowsims-turtle-amd64-linux \
 	  dist \
 	  binary_dist \
 	  ui/core/index.ts \
@@ -85,7 +85,7 @@ ui/core/proto/api.ts: proto/*.proto node_modules
 
 ui/%/index.html: ui/index_template.html
 	$(eval title := $(shell echo $(shell basename $(@D)) | sed -r 's/(^|_)([a-z])/\U \2/g' | cut -c 2-))
-	cat ui/index_template.html | sed -e 's/@@TITLE@@/Classic $(title) Simulator/g' -e 's/@@SPEC@@/$(shell basename $(@D))/g' > $@
+	cat ui/index_template.html | sed -e 's/@@TITLE@@/Turtle WoW $(title) Simulator/g' -e 's/@@SPEC@@/$(shell basename $(@D))/g' > $@
 
 package-lock.json:
 	npm install
@@ -96,14 +96,14 @@ node_modules: package-lock.json
 # Generic rule for hosting any class directory
 .PHONY: host_%
 host_%: $(OUT_DIR) node_modules
-	npx http-server $(OUT_DIR)/..
+	npx http-server $(OUT_DIR)
 
 # Generic rule for building index.html for any class directory
 $(OUT_DIR)/%/index.html: ui/index_template.html $(OUT_DIR)/assets
 	$(eval title := $(shell echo $(shell basename $(@D)) | sed -r 's/(^|_)([a-z])/\U \2/g' | cut -c 2-))
 	echo $(title)
 	mkdir -p $(@D)
-	cat ui/index_template.html | sed -e 's/@@TITLE@@/CLASSIC $(title) Simulator/g' -e 's/@@SPEC@@/$(shell basename $(@D))/g' > $@
+	cat ui/index_template.html | sed -e 's/@@TITLE@@/Turtle WoW $(title) Simulator/g' -e 's/@@SPEC@@/$(shell basename $(@D))/g' > $@
 
 .PHONY: wasm
 wasm: $(OUT_DIR)/lib.wasm
@@ -124,31 +124,31 @@ $(OUT_DIR)/assets/%: assets/%
 	@rm -rf "$(OUT_DIR)/assets/db_inputs"
 
 binary_dist/dist.go: sim/web/dist.go.tmpl
-	mkdir -p binary_dist/$(BASE_DIR)
-	touch binary_dist/$(BASE_DIR)/embedded
+	mkdir -p binary_dist
+	touch binary_dist/embedded
 	cp sim/web/dist.go.tmpl binary_dist/dist.go
 
 binary_dist: $(OUT_DIR)/.dirstamp
 	rm -rf binary_dist
 	mkdir -p binary_dist
 	cp -r $(OUT_DIR)/ binary_dist/
-	rm -f binary_dist/$(BASE_DIR)/lib.wasm
-	rm -rf binary_dist/$(BASE_DIR)/assets/db_inputs
-	rm -f binary_dist/$(BASE_DIR)/assets/database/db.bin
-	rm -f binary_dist/$(BASE_DIR)/assets/database/leftover_db.bin
+	rm -f binary_dist/lib.wasm
+	rm -rf binary_dist/assets/db_inputs
+	rm -f binary_dist/assets/database/db.bin
+	rm -f binary_dist/assets/database/leftover_db.bin
 
 # Rebuild the protobuf generated code.
 .PHONY: proto
 proto: sim/core/proto/api.pb.go ui/core/proto/api.ts
 
 # Builds the web server with the compiled client.
-.PHONY: wowsimclassic
-wowsimclassic: binary_dist devserver
+.PHONY: wowsims-turtle
+wowsims-turtle: binary_dist devserver
 
 .PHONY: devserver
 devserver: sim/core/proto/api.pb.go sim/web/main.go binary_dist/dist.go
 	@echo "Starting server compile now..."
-	@if go build -o wowsimclassic ./sim/web/main.go; then \
+	@if go build -o wowsims-turtle ./sim/web/main.go; then \
 		printf "\033[1;32mBuild Completed Successfully\033[0m\n"; \
 	else \
 		printf "\033[1;31mBUILD FAILED\033[0m\n"; \
@@ -167,32 +167,32 @@ endif
 rundevserver: air devserver
 ifeq ($(WATCH), 1)
 	npx vite build -m development --watch &
-	ulimit -n 10240 && air -tmp_dir "/tmp" -build.include_ext "go,proto" -build.args_bin "--usefs=true --launch=false" -build.bin "./wowsimclassic" -build.cmd "make devserver" -build.exclude_dir "assets,dist,node_modules,ui,tools"
+	ulimit -n 10240 && air -tmp_dir "/tmp" -build.include_ext "go,proto" -build.args_bin "--usefs=true --launch=false" -build.bin "./wowsims-turtle" -build.cmd "make devserver" -build.exclude_dir "assets,dist,node_modules,ui,tools"
 else
-	./wowsimclassic --usefs=true --launch=false --host=":3333"
+	./wowsims-turtle --usefs=true --launch=false --host=":3333"
 endif
 
-wowsimclassic-windows.exe: wowsimclassic
+wowsims-turtle-windows.exe: wowsims-turtle
 # go build only considers syso files when invoked without specifying .go files: https://github.com/golang/go/issues/16090
 	cp ./assets/favicon_io/icon-windows_amd64.syso ./sim/web/icon-windows_amd64.syso
-	cd ./sim/web/ && GOOS=windows GOARCH=amd64 GOAMD64=v2 go build -o wowsimclassic-windows.exe -ldflags="-X 'main.Version=$(VERSION)' -s -w"
-	cd ./cmd/wowsimcli && GOOS=windows GOARCH=amd64 GOAMD64=v2 go build -o wowsimcli-windows.exe --tags=with_db -ldflags="-X 'main.Version=$(VERSION)' -s -w"
+	cd ./sim/web/ && GOOS=windows GOARCH=amd64 GOAMD64=v2 go build -o wowsims-turtle-windows.exe -ldflags="-X 'main.Version=$(VERSION)' -s -w"
+	cd ./cmd/wowsimcli && GOOS=windows GOARCH=amd64 GOAMD64=v2 go build -o wowsims-turtle-cli-windows.exe --tags=with_db -ldflags="-X 'main.Version=$(VERSION)' -s -w"
 	rm ./sim/web/icon-windows_amd64.syso
-	mv ./sim/web/wowsimclassic-windows.exe ./wowsimclassic-windows.exe
-	mv ./cmd/wowsimcli/wowsimcli-windows.exe ./wowsimcli-windows.exe
+	mv ./sim/web/wowsims-turtle-windows.exe ./wowsims-turtle-windows.exe
+	mv ./cmd/wowsimcli/wowsims-turtle-cli-windows.exe ./wowsims-turtle-cli-windows.exe
 
-release: wowsimclassic wowsimclassic-windows.exe
-	GOOS=darwin GOARCH=amd64 GOAMD64=v2 go build -o wowsimclassic-amd64-darwin -ldflags="-X 'main.Version=$(VERSION)' -s -w" ./sim/web/main.go
-	GOOS=darwin GOARCH=arm64 go build -o wowsimclassic-arm64-darwin -ldflags="-X 'main.Version=$(VERSION)' -s -w" ./sim/web/main.go
-	GOOS=linux GOARCH=amd64 GOAMD64=v2 go build -o wowsimclassic-amd64-linux   -ldflags="-X 'main.Version=$(VERSION)' -s -w" ./sim/web/main.go
-	GOOS=linux GOARCH=amd64 GOAMD64=v2 go build -o wowsimcli-amd64-linux --tags=with_db -ldflags="-X 'main.Version=$(VERSION)' -s -w" ./cmd/wowsimcli/cli_main.go
+release: wowsims-turtle wowsims-turtle-windows.exe
+	GOOS=darwin GOARCH=amd64 GOAMD64=v2 go build -o wowsims-turtle-amd64-darwin -ldflags="-X 'main.Version=$(VERSION)' -s -w" ./sim/web/main.go
+	GOOS=darwin GOARCH=arm64 go build -o wowsims-turtle-arm64-darwin -ldflags="-X 'main.Version=$(VERSION)' -s -w" ./sim/web/main.go
+	GOOS=linux GOARCH=amd64 GOAMD64=v2 go build -o wowsims-turtle-amd64-linux   -ldflags="-X 'main.Version=$(VERSION)' -s -w" ./sim/web/main.go
+	GOOS=linux GOARCH=amd64 GOAMD64=v2 go build -o wowsims-turtle-cli-amd64-linux --tags=with_db -ldflags="-X 'main.Version=$(VERSION)' -s -w" ./cmd/wowsimcli/cli_main.go
 # Now compress into a zip because the files are getting large.
-	zip wowsimclassic-windows.exe.zip wowsimclassic-windows.exe
-	zip wowsimclassic-amd64-darwin.zip wowsimclassic-amd64-darwin
-	zip wowsimclassic-arm64-darwin.zip wowsimclassic-arm64-darwin
-	zip wowsimclassic-amd64-linux.zip wowsimclassic-amd64-linux
-	zip wowsimcli-amd64-linux.zip wowsimcli-amd64-linux
-	zip wowsimcli-windows.exe.zip wowsimcli-windows.exe
+	zip wowsims-turtle-windows.exe.zip wowsims-turtle-windows.exe
+	zip wowsims-turtle-amd64-darwin.zip wowsims-turtle-amd64-darwin
+	zip wowsims-turtle-arm64-darwin.zip wowsims-turtle-arm64-darwin
+	zip wowsims-turtle-amd64-linux.zip wowsims-turtle-amd64-linux
+	zip wowsims-turtle-cli-amd64-linux.zip wowsims-turtle-cli-amd64-linux
+	zip wowsims-turtle-cli-windows.exe.zip wowsims-turtle-cli-windows.exe
 
 sim/core/proto/api.pb.go: proto/*.proto
 	protoc -I=./proto --go_out=./sim/core ./proto/*.proto
@@ -200,15 +200,15 @@ sim/core/proto/api.pb.go: proto/*.proto
 # Only useful for building the lib on a host platform that matches the target platform
 .PHONY: locallib
 locallib: sim/core/proto/api.pb.go
-	go build -buildmode=c-shared -o wowsimclassic.so --tags=with_db ./sim/lib/library.go
+	go build -buildmode=c-shared -o wowsims-turtle.so --tags=with_db ./sim/lib/library.go
 
 .PHONY: nixlib
 nixlib: sim/core/proto/api.pb.go
-	GOOS=linux GOARCH=amd64 GOAMD64=v2 go build -buildmode=c-shared -o wowsimclassic-linux.so --tags=with_db ./sim/lib/library.go
+	GOOS=linux GOARCH=amd64 GOAMD64=v2 go build -buildmode=c-shared -o wowsims-turtle-linux.so --tags=with_db ./sim/lib/library.go
 
 .PHONY: winlib
 winlib: sim/core/proto/api.pb.go
-	GOOS=windows GOARCH=amd64 GOAMD64=v2 CGO_ENABLED=1 CC=x86_64-w64-mingw32-gcc go build -buildmode=c-shared -o wowsimclassic-windows.dll --tags=with_db ./sim/lib/library.go
+	GOOS=windows GOARCH=amd64 GOAMD64=v2 CGO_ENABLED=1 CC=x86_64-w64-mingw32-gcc go build -buildmode=c-shared -o wowsims-turtle-windows.dll --tags=with_db ./sim/lib/library.go
 
 .PHONY: items
 items: sim/core/items/all_items.go sim/core/proto/api.pb.go
@@ -247,19 +247,18 @@ setup:
 .PHONY: host
 host: air $(OUT_DIR)/.dirstamp node_modules
 ifeq ($(WATCH), 1)
-	ulimit -n 10240 && air -tmp_dir "/tmp" -build.include_ext "go,ts,js,html" -build.bin "npx" -build.args_bin "http-server $(OUT_DIR)/.." -build.cmd "make" -build.exclude_dir "dist,node_modules,tools"
+	ulimit -n 10240 && air -tmp_dir "/tmp" -build.include_ext "go,ts,js,html" -build.bin "npx" -build.args_bin "http-server $(OUT_DIR)" -build.cmd "make" -build.exclude_dir "dist,node_modules,tools"
 else
-	# Intentionally serve one level up, so the local site has 'wotlk' as the first
-	# directory just like github pages.
-	npx http-server $(OUT_DIR)/..
+	# Serve from dist directory directly at root path
+	npx http-server $(OUT_DIR)
 endif
 
 devmode: air devserver
 ifeq ($(WATCH), 1)
 	npx tsx vite.build-workers.ts & npx vite serve --host &
-	air -tmp_dir "/tmp" -build.include_ext "go,proto" -build.args_bin "--usefs=true --launch=false --wasm=false" -build.bin "./wowsimclassic" -build.cmd "make devserver" -build.exclude_dir "assets,dist,node_modules,ui,tools"
+	air -tmp_dir "/tmp" -build.include_ext "go,proto" -build.args_bin "--usefs=true --launch=false --wasm=false" -build.bin "./wowsims-turtle" -build.cmd "make devserver" -build.exclude_dir "assets,dist,node_modules,ui,tools"
 else
-	./wowsimclassic --usefs=true --launch=false --host=":3333"
+	./wowsims-turtle --usefs=true --launch=false --host=":3333"
 endif
 
 webworkers:

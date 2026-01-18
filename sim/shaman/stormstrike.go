@@ -3,7 +3,7 @@ package shaman
 import (
 	"time"
 
-	"github.com/wowsims/classic/sim/core"
+	"github.com/isfir/wowsims-turtle/sim/core"
 )
 
 func (shaman *Shaman) registerStormstrikeSpell() {

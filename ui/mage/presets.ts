@@ -32,9 +32,7 @@ import BISGear from './gear_sets/bis.gear.json';
 
 export const GearBIS = PresetUtils.makePresetGear('BiS', BISGear);
 
-export const GearPresets = [
-	GearBIS,
-];
+export const GearPresets = [GearBIS];
 
 export const DefaultGear = GearBIS;
 
@@ -44,9 +42,7 @@ export const DefaultGear = GearBIS;
 
 export const APLPDEFAULT = PresetUtils.makePresetAPLRotation('Arcane', DEFAULTAPL);
 
-export const APLPresets = [
-	APLPDEFAULT,
-];
+export const APLPresets = [APLPDEFAULT];
 
 export const DefaultAPL = APLPDEFAULT;
 
@@ -55,13 +51,11 @@ export const DefaultAPL = APLPDEFAULT;
 ///////////////////////////////////////////////////////////////////////////
 
 // Default talents. Uses the wowhead calculator format, make the talents on
-// https://wowhead.com/classic/talent-calc and copy the numbers in the url.
+// https://wowhead.com/talent-calc and copy the numbers in the url.
 
 export const TalentsArcane = PresetUtils.makePresetTalents('Arcane', SavedTalents.create({ talentsString: '2350550310033311251-50003' }));
 
-export const TalentPresets = [
-	TalentsArcane,
-];
+export const TalentPresets = [TalentsArcane];
 
 export const DefaultTalents = TalentsArcane;
 

@@ -1,9 +1,5 @@
 import { Class, Spec } from '../proto/common.js';
-import {
-	SpecTalents,
-	specToClass,
-	specTypeFunctions,
-} from '../proto_utils/utils.js';
+import { SpecTalents, specToClass, specTypeFunctions } from '../proto_utils/utils.js';
 import { druidTalentsConfig } from './druid.js';
 import { hunterTalentsConfig } from './hunter.js';
 import { mageTalentsConfig } from './mage.js';
@@ -31,20 +27,26 @@ export const classTalentsConfig: Record<Class, TalentsConfig<any>> = {
 export function talentSpellIdsToTalentString(playerClass: Class, talentIds: Array<number>): string {
 	const talentsConfig = classTalentsConfig[playerClass];
 
-	const talentsStr = talentsConfig.map(treeConfig => {
-		const treeStr = treeConfig.talents.map(talentConfig => {
-			const spellIdIndex = talentConfig.spellIds.findIndex(spellId => talentIds.includes(spellId));
-			if (spellIdIndex == -1) {
-				return '0';
-			} else {
-				return String(spellIdIndex + 1);
-			}
-		}).join('').replace(/0+$/g, '');
+	const talentsStr = talentsConfig
+		.map(treeConfig => {
+			const treeStr = treeConfig.talents
+				.map(talentConfig => {
+					const spellIdIndex = talentConfig.spellIds.findIndex(spellId => talentIds.includes(spellId));
+					if (spellIdIndex == -1) {
+						return '0';
+					} else {
+						return String(spellIdIndex + 1);
+					}
+				})
+				.join('')
+				.replace(/0+$/g, '');
 
-		return treeStr;
-	}).join('-').replace(/-+$/g, '');
+			return treeStr;
+		})
+		.join('-')
+		.replace(/-+$/g, '');
 
-	return talentsStr
+	return talentsStr;
 }
 
 export function playerTalentStringToProto<SpecType extends Spec>(spec: Spec, talentString: string): SpecTalents<SpecType> {
@@ -77,9 +79,13 @@ export function talentStringToProto<TalentsProto>(proto: TalentsProto, talentStr
 // Note that this function will fail if any of the talent names are not defined. TODO: Remove that condition
 // once all talents are migrated to wrath and use all fields.
 export function protoToTalentString<TalentsProto>(proto: TalentsProto, talentsConfig: TalentsConfig<TalentsProto>): string {
-	return talentsConfig.map(treeConfig => {
-		return treeConfig.talents
-			.map(talentConfig => String(Number(proto[(talentConfig.fieldName as keyof TalentsProto)!])))
-			.join('').replace(/0+$/g, '');
-	}).join('-').replace(/-+$/g, '');
+	return talentsConfig
+		.map(treeConfig => {
+			return treeConfig.talents
+				.map(talentConfig => String(Number(proto[(talentConfig.fieldName as keyof TalentsProto)!])))
+				.join('')
+				.replace(/0+$/g, '');
+		})
+		.join('-')
+		.replace(/-+$/g, '');
 }

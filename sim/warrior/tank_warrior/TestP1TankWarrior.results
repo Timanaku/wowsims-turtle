@@ -99,8 +99,8 @@ stat_weights_results: {
 dps_results: {
  key: "TestP1TankWarrior-Phase1-AllItems-BattlegearofHeroism"
  value: {
-  dps: 415.56621
-  tps: 397.54246
+  dps: 403.95416
+  tps: 386.82817
  }
 }
 dps_results: {
@@ -113,57 +113,71 @@ dps_results: {
 dps_results: {
  key: "TestP1TankWarrior-Phase1-AllItems-BattlegearofWrath"
  value: {
-  dps: 386.71043
-  tps: 372.98717
+  dps: 387.9237
+  tps: 373.7397
  }
 }
 dps_results: {
  key: "TestP1TankWarrior-Phase1-AllItems-Champion'sBattlearmor"
  value: {
-  dps: 411.11202
-  tps: 393.73742
+  dps: 389.1702
+  tps: 373.34095
  }
 }
 dps_results: {
  key: "TestP1TankWarrior-Phase1-AllItems-Conqueror'sBattlegear"
  value: {
-  dps: 429.30528
-  tps: 411.02467
+  dps: 420.22038
+  tps: 402.17347
  }
 }
 dps_results: {
  key: "TestP1TankWarrior-Phase1-AllItems-Dreadnaught'sBattlegear"
  value: {
-  dps: 398.71399
-  tps: 383.17331
+  dps: 392.88486
+  tps: 377.14717
  }
 }
 dps_results: {
  key: "TestP1TankWarrior-Phase1-AllItems-FieldMarshal'sBattlegear"
  value: {
-  dps: 439.45468
-  tps: 419.86888
+  dps: 404.36893
+  tps: 387.26473
  }
 }
 dps_results: {
  key: "TestP1TankWarrior-Phase1-AllItems-LieutenantCommander'sBattlearmor"
  value: {
-  dps: 411.11202
-  tps: 393.73742
+  dps: 389.1702
+  tps: 373.34095
+ }
+}
+dps_results: {
+ key: "TestP1TankWarrior-Phase1-AllItems-TheDefiler'sResolution"
+ value: {
+  dps: 407.80006
+  tps: 390.42725
+ }
+}
+dps_results: {
+ key: "TestP1TankWarrior-Phase1-AllItems-TheHighlander'sResolution"
+ value: {
+  dps: 407.80006
+  tps: 390.42725
  }
 }
 dps_results: {
  key: "TestP1TankWarrior-Phase1-AllItems-Vindicator'sBattlegear"
  value: {
-  dps: 423.87084
-  tps: 408.40328
+  dps: 416.17931
+  tps: 401.18306
  }
 }
 dps_results: {
  key: "TestP1TankWarrior-Phase1-AllItems-Warlord'sBattlegear"
  value: {
-  dps: 439.45468
-  tps: 419.86888
+  dps: 404.36893
+  tps: 387.26473
  }
 }
 dps_results: {

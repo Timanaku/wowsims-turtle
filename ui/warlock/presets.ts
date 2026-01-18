@@ -42,11 +42,7 @@ export const GearBlank = PresetUtils.makePresetGear('Blank', BlankGear);
 export const GearPreBis = PresetUtils.makePresetGear('Pre-BIS', PreBisGear);
 export const GearMC = PresetUtils.makePresetGear('MC', MCGear);
 
-export const GearPresets = [
-	GearBlank,
-	GearPreBis,
-	GearMC,
-];
+export const GearPresets = [GearBlank, GearPreBis, GearMC];
 
 export const DefaultGear = GearPreBis;
 
@@ -66,7 +62,7 @@ export const DefaultAPL = RotationSB;
 ///////////////////////////////////////////////////////////////////////////
 
 // Default talents. Uses the wowhead calculator format, make the talents on
-// https://wowhead.com/classic/talent-calc and copy the numbers in the url.
+// https://wowhead.com/talent-calc and copy the numbers in the url.
 
 export const TalentsSMRuid = {
 	name: 'SM/Ruin',

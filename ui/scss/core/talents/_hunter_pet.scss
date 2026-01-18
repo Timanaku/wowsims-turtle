@@ -1,17 +1,21 @@
 .hunter-pet-talents-picker {
-  flex-basis: 33%;
+	flex-basis: 33%;
 }
 
-.hunter-pet-talents-cunning, .hunter-pet-talents-ferocity, .hunter-pet-talents-tenacity {
+.hunter-pet-talents-cunning,
+.hunter-pet-talents-ferocity,
+.hunter-pet-talents-tenacity {
 	display: none !important;
 }
 
 .cunning .hunter-pet-talents-cunning {
 	display: initial !important;
 }
+
 .ferocity .hunter-pet-talents-ferocity {
 	display: initial !important;
 }
+
 .tenacity .hunter-pet-talents-tenacity {
 	display: initial !important;
 }

@@ -12,7 +12,7 @@ import { EventID, TypedEvent } from '../typed_event';
 import { formatDeltaTextElem, formatToNumber, formatToPercent, sum } from '../utils';
 
 export function addRaidSimAction(simUI: SimUI): RaidSimResultsManager {
-	const resultsViewer = simUI.resultsViewer
+	const resultsViewer = simUI.resultsViewer;
 	let isRunning = false;
 	let waitAbort = false;
 
@@ -348,12 +348,30 @@ export class RaidSimResultsManager {
 		} else {
 			const curMetrics = curMetricsTemp as DistributionMetricsProto;
 			const refMetrics = refMetricsTemp as DistributionMetricsProto;
-			const isDiff = this.applyZTestTooltip(elem, ref.iterations, refMetrics.avg, refMetrics.stdev, cur.iterations, curMetrics.avg, curMetrics.stdev, !!preNormalizedErrors);
+			const isDiff = this.applyZTestTooltip(
+				elem,
+				ref.iterations,
+				refMetrics.avg,
+				refMetrics.stdev,
+				cur.iterations,
+				curMetrics.avg,
+				curMetrics.stdev,
+				!!preNormalizedErrors,
+			);
 			formatDeltaTextElem(elem, refMetrics.avg, curMetrics.avg, precision, lowerIsBetter, !isDiff);
 		}
 	}
 
-	private applyZTestTooltip(elem: HTMLElement, n1: number, avg1: number, stdev1: number, n2: number, avg2: number, stdev2: number, preNormalized: boolean): boolean {
+	private applyZTestTooltip(
+		elem: HTMLElement,
+		n1: number,
+		avg1: number,
+		stdev1: number,
+		n2: number,
+		avg2: number,
+		stdev2: number,
+		preNormalized: boolean,
+	): boolean {
 		const delta = avg1 - avg2;
 		const err1 = preNormalized ? stdev1 : stdev1 / Math.sqrt(n1);
 		const err2 = preNormalized ? stdev2 : stdev2 / Math.sqrt(n2);
@@ -629,7 +647,7 @@ export class RaidSimResultsManager {
 		return (
 			<>
 				{data.map(column => {
-					const errorDecimals = (column.unit === 'percentage') ? 2 : 0;
+					const errorDecimals = column.unit === 'percentage' ? 2 : 0;
 					return (
 						<div className={`results-metric ${column.classes}`}>
 							<span className="topline-result-avg">{column.average.toFixed(2)}</span>

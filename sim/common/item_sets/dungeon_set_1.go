@@ -3,8 +3,8 @@ package item_sets
 import (
 	"time"
 
-	"github.com/wowsims/classic/sim/core"
-	"github.com/wowsims/classic/sim/core/stats"
+	"github.com/isfir/wowsims-turtle/sim/core"
+	"github.com/isfir/wowsims-turtle/sim/core/stats"
 )
 
 //We can place these in the class items_sets_pve.go if wanted.

@@ -2,8 +2,8 @@
 .raid-sim-ui {
 	@include theme-color(
 		$brand,
-		.9,
-		// '/classic/assets/img/ulduar.jpg'
-		'/classic/assets/img/togc.png'
+		0.9,
+		// '../../../../assets/img/ulduar.jpg'
+		'../../../../assets/img/togc.png'
 	);
 }

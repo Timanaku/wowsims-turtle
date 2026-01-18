@@ -42,7 +42,7 @@ character_stats_results: {
   final_stats: 70
   final_stats: 60
   final_stats: 384
-  final_stats: 0
+  final_stats: 146
   final_stats: 35
   final_stats: 0
  }
@@ -99,8 +99,8 @@ stat_weights_results: {
 dps_results: {
  key: "TestP1Balance-Phase1-AllItems-CenarionRaiment"
  value: {
-  dps: 217.0559
-  tps: 229.23765
+  dps: 245.90044
+  tps: 258.08219
  }
 }
 dps_results: {
@@ -113,15 +113,22 @@ dps_results: {
 dps_results: {
  key: "TestP1Balance-Phase1-AllItems-FeralheartRaiment"
  value: {
-  dps: 241.56418
-  tps: 254.90344
+  dps: 293.3344
+  tps: 307.65641
  }
 }
 dps_results: {
  key: "TestP1Balance-Phase1-AllItems-FieldMarshal'sSanctuary"
  value: {
-  dps: 236.00472
-  tps: 250.25922
+  dps: 235.92375
+  tps: 250.17825
+ }
+}
+dps_results: {
+ key: "TestP1Balance-Phase1-AllItems-IronweaveBattlesuit"
+ value: {
+  dps: 195.96508
+  tps: 210.51255
  }
 }
 dps_results: {
@@ -134,22 +141,50 @@ dps_results: {
 dps_results: {
  key: "TestP1Balance-Phase1-AllItems-StormrageRaiment"
  value: {
-  dps: 202.06999
-  tps: 211.20024
+  dps: 273.9613
+  tps: 283.09155
  }
 }
 dps_results: {
  key: "TestP1Balance-Phase1-AllItems-SymbolsofUnendingLife"
  value: {
-  dps: 263.44233
-  tps: 277.19381
+  dps: 256.02294
+  tps: 270.39099
+ }
+}
+dps_results: {
+ key: "TestP1Balance-Phase1-AllItems-TheDefiler'sPurpose"
+ value: {
+  dps: 235.63713
+  tps: 249.99854
+ }
+}
+dps_results: {
+ key: "TestP1Balance-Phase1-AllItems-TheDefiler'sWill"
+ value: {
+  dps: 269.77946
+  tps: 284.21438
+ }
+}
+dps_results: {
+ key: "TestP1Balance-Phase1-AllItems-TheHighlander'sPurpose"
+ value: {
+  dps: 235.63713
+  tps: 249.99854
+ }
+}
+dps_results: {
+ key: "TestP1Balance-Phase1-AllItems-TheHighlander'sWill"
+ value: {
+  dps: 269.77946
+  tps: 284.21438
  }
 }
 dps_results: {
  key: "TestP1Balance-Phase1-AllItems-Warlord'sSanctuary"
  value: {
-  dps: 236.00472
-  tps: 250.25922
+  dps: 235.92375
+  tps: 250.17825
  }
 }
 dps_results: {

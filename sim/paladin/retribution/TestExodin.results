@@ -99,50 +99,50 @@ stat_weights_results: {
 dps_results: {
  key: "TestExodin-Phase5-AllItems-Avenger'sBattlegear"
  value: {
-  dps: 651.83708
-  tps: 694.36061
+  dps: 641.15092
+  tps: 683.54662
  }
 }
 dps_results: {
  key: "TestExodin-Phase5-AllItems-FieldMarshal'sAegis"
  value: {
-  dps: 634.38782
-  tps: 677.00108
+  dps: 619.42852
+  tps: 662.04178
  }
 }
 dps_results: {
  key: "TestExodin-Phase5-AllItems-Freethinker'sArmor"
  value: {
-  dps: 522.37642
-  tps: 564.55189
+  dps: 532.88316
+  tps: 575.13238
  }
 }
 dps_results: {
  key: "TestExodin-Phase5-AllItems-JudgementArmor"
  value: {
-  dps: 648.92824
-  tps: 691.45791
+  dps: 535.32514
+  tps: 577.92242
  }
 }
 dps_results: {
  key: "TestExodin-Phase5-AllItems-LawbringerArmor"
  value: {
-  dps: 532.81709
-  tps: 575.25335
+  dps: 514.38484
+  tps: 557.09643
  }
 }
 dps_results: {
  key: "TestExodin-Phase5-AllItems-LieutenantCommander'sRedoubt"
  value: {
-  dps: 603.08544
-  tps: 645.14198
+  dps: 599.69944
+  tps: 641.75599
  }
 }
 dps_results: {
  key: "TestExodin-Phase5-AllItems-RedemptionArmor"
  value: {
-  dps: 527.02852
-  tps: 569.5573
+  dps: 526.47075
+  tps: 569.30133
  }
 }
 dps_results: {

@@ -1,8 +1,8 @@
 package shaman
 
 import (
-	"github.com/wowsims/classic/sim/core"
-	"github.com/wowsims/classic/sim/core/stats"
+	"github.com/isfir/wowsims-turtle/sim/core"
+	"github.com/isfir/wowsims-turtle/sim/core/stats"
 )
 
 var ItemSetChampionsEarthshaker = core.NewItemSet(core.ItemSet{

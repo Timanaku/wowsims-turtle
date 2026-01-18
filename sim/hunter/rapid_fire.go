@@ -3,7 +3,7 @@ package hunter
 import (
 	"time"
 
-	"github.com/wowsims/classic/sim/core"
+	"github.com/isfir/wowsims-turtle/sim/core"
 )
 
 func (hunter *Hunter) registerRapidFire() {

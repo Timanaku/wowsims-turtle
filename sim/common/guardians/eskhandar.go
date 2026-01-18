@@ -3,8 +3,8 @@ package guardians
 import (
 	"slices"
 
-	"github.com/wowsims/classic/sim/core"
-	"github.com/wowsims/classic/sim/core/stats"
+	"github.com/isfir/wowsims-turtle/sim/core"
+	"github.com/isfir/wowsims-turtle/sim/core/stats"
 )
 
 // https://www.wowhead.com/classic/item-set=1781/spirit-of-eskhandar

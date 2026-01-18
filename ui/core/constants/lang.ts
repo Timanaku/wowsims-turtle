@@ -1,13 +1,13 @@
 export const wowheadSupportedLanguages: Record<string, string> = {
-	'en': 'English',
-	'cn': '简体中文',
-	'de': 'Deutsch',
-	'es': 'Español',
-	'fr': 'Français',
-	'it': 'Italiano',
-	'ko': '한국어',
-	'pt': 'Português Brasileiro',
-	'ru': 'Русский',
+	en: 'English',
+	cn: '简体中文',
+	de: 'Deutsch',
+	es: 'Español',
+	fr: 'Français',
+	it: 'Italiano',
+	ko: '한국어',
+	pt: 'Português Brasileiro',
+	ru: 'Русский',
 };
 
 // Returns a 2-letter language code if it is a wowhead-supported language, or '' otherwise.

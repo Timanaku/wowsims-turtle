@@ -6,8 +6,8 @@
 package core
 
 import (
-	"github.com/wowsims/classic/assets/database"
-	"github.com/wowsims/classic/sim/core/proto"
+	"github.com/isfir/wowsims-turtle/assets/database"
+	"github.com/isfir/wowsims-turtle/sim/core/proto"
 )
 
 func init() {

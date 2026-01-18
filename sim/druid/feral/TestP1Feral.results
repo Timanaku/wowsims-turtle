@@ -99,57 +99,92 @@ stat_weights_results: {
 dps_results: {
  key: "TestP1Feral-Phase1-AllItems-CenarionRaiment"
  value: {
-  dps: 474.92374
-  tps: 337.19585
+  dps: 477.61739
+  tps: 339.10835
  }
 }
 dps_results: {
  key: "TestP1Feral-Phase1-AllItems-Champion'sRefuge"
  value: {
-  dps: 552.22274
-  tps: 392.07815
+  dps: 546.69288
+  tps: 388.15195
  }
 }
 dps_results: {
  key: "TestP1Feral-Phase1-AllItems-FeralheartRaiment"
  value: {
-  dps: 567.53112
-  tps: 402.9471
+  dps: 502.44748
+  tps: 356.73771
  }
 }
 dps_results: {
  key: "TestP1Feral-Phase1-AllItems-FieldMarshal'sSanctuary"
  value: {
-  dps: 599.21809
-  tps: 425.44484
+  dps: 584.03269
+  tps: 414.66321
+ }
+}
+dps_results: {
+ key: "TestP1Feral-Phase1-AllItems-IronweaveBattlesuit"
+ value: {
+  dps: 473.60138
+  tps: 336.25698
  }
 }
 dps_results: {
  key: "TestP1Feral-Phase1-AllItems-LieutenantCommander'sRefuge"
  value: {
-  dps: 552.22274
-  tps: 392.07815
+  dps: 546.69288
+  tps: 388.15195
  }
 }
 dps_results: {
  key: "TestP1Feral-Phase1-AllItems-StormrageRaiment"
  value: {
-  dps: 473.62692
-  tps: 336.27512
+  dps: 480.33494
+  tps: 341.0378
  }
 }
 dps_results: {
  key: "TestP1Feral-Phase1-AllItems-SymbolsofUnendingLife"
  value: {
-  dps: 552.48064
-  tps: 392.26126
+  dps: 529.7368
+  tps: 376.11313
+ }
+}
+dps_results: {
+ key: "TestP1Feral-Phase1-AllItems-TheDefiler'sPurpose"
+ value: {
+  dps: 509.80043
+  tps: 361.9583
+ }
+}
+dps_results: {
+ key: "TestP1Feral-Phase1-AllItems-TheDefiler'sWill"
+ value: {
+  dps: 501.53795
+  tps: 356.09194
+ }
+}
+dps_results: {
+ key: "TestP1Feral-Phase1-AllItems-TheHighlander'sPurpose"
+ value: {
+  dps: 509.80043
+  tps: 361.9583
+ }
+}
+dps_results: {
+ key: "TestP1Feral-Phase1-AllItems-TheHighlander'sWill"
+ value: {
+  dps: 501.53795
+  tps: 356.09194
  }
 }
 dps_results: {
  key: "TestP1Feral-Phase1-AllItems-Warlord'sSanctuary"
  value: {
-  dps: 599.21809
-  tps: 425.44484
+  dps: 584.03269
+  tps: 414.66321
  }
 }
 dps_results: {

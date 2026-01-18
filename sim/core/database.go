@@ -5,8 +5,8 @@ import (
 	"slices"
 	"sync"
 
-	"github.com/wowsims/classic/sim/core/proto"
-	"github.com/wowsims/classic/sim/core/stats"
+	"github.com/isfir/wowsims-turtle/sim/core/proto"
+	"github.com/isfir/wowsims-turtle/sim/core/stats"
 	"google.golang.org/protobuf/encoding/protojson"
 )
 

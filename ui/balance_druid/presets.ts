@@ -42,7 +42,6 @@ export const GearP3BIS = PresetUtils.makePresetGear('P3 BiS', P3BISGear);
 export const GearP4BIS = PresetUtils.makePresetGear('P4 BiS', P4BISGear);
 export const GearP5BIS = PresetUtils.makePresetGear('P5 BiS', P5BISGear);
 
-
 export const GearPresets = {
 	[Phase.Phase5]: [GearP0BIS, GearP1BIS, GearP2BIS, GearP3BIS, GearP4BIS, GearP5BIS],
 };

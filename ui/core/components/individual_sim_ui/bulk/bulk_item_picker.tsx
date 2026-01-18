@@ -1,5 +1,6 @@
 import { ref } from 'tsx-vanilla';
 
+import { BASE_PATH } from '../../../constants/other';
 import { IndividualSimUI } from '../../../individual_sim_ui';
 import { EquippedItem } from '../../../proto_utils/equipped_item';
 import { getEligibleItemSlots } from '../../../proto_utils/utils';
@@ -65,7 +66,7 @@ export default class BulkItemPicker extends Component {
 			this.item = newItem;
 		} else {
 			this.itemElem.rootElem.style.opacity = '30%';
-			this.itemElem.iconElem.style.backgroundImage = `url('/cata/assets/item_slots/empty.jpg')`;
+			this.itemElem.iconElem.style.backgroundImage = `url('${BASE_PATH}assets/item_slots/empty.jpg')`;
 			this.itemElem.nameElem.textContent = 'Add new item (not implemented)';
 			this.itemElem.rootElem.style.alignItems = 'center';
 		}

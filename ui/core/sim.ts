@@ -47,7 +47,7 @@ export type StatWeightsData = {
 	result: StatWeightsResult;
 };
 
-const WASM_CONCURRENCY_STORAGE_KEY = `classic_wasmconcurrency`;
+const WASM_CONCURRENCY_STORAGE_KEY = `wowsims_turtle_wasmconcurrency`;
 
 // Core Sim module which deals only with api types, no UI-related stuff.
 export class Sim {

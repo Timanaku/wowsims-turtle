@@ -12,7 +12,7 @@ export class IndividualWowheadGearPlannerImporter<SpecType extends Spec> extends
 			<>
 				<p>
 					Import settings from{' '}
-					<a href="https://www.wowhead.com/classic/gear-planner" target="_blank">
+					<a href="https://www.wowhead.com/gear-planner" target="_blank">
 						Wowhead Gear Planner
 					</a>
 					.
@@ -26,7 +26,7 @@ export class IndividualWowheadGearPlannerImporter<SpecType extends Spec> extends
 	async onImport(url: string) {
 		const match = url.match(/www\.wowhead\.com\/classic\/gear-planner\/([a-z\-]+)\/([a-z\-]+)\/([a-zA-Z0-9_\-]+)/);
 		if (!match) {
-			throw new Error(`Invalid WCL URL ${url}, must look like "https://www.wowhead.com/classic/gear-planner/CLASS/RACE/XXXX"`);
+			throw new Error(`Invalid WCL URL ${url}, must look like "https://www.wowhead.com/gear-planner/CLASS/RACE/XXXX"`);
 		}
 
 		// Parse all the settings.

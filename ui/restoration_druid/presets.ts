@@ -11,7 +11,7 @@ import BlankGear from './gear_sets/blank.gear.json';
 export const DefaultGear = PresetUtils.makePresetGear('Blank', BlankGear);
 
 // Default talents. Uses the wowhead calculator format, make the talents on
-// https://wowhead.com/classic/talent-calc and copy the numbers in the url.
+// https://wowhead.com/talent-calc and copy the numbers in the url.
 export const CelestialFocusTalents = {
 	name: 'Celestial Focus',
 	data: SavedTalents.create({

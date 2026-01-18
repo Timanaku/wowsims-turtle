@@ -1,7 +1,7 @@
 package warrior
 
 import (
-	"github.com/wowsims/classic/sim/core"
+	"github.com/isfir/wowsims-turtle/sim/core"
 )
 
 func (warrior *Warrior) registerExecuteSpell() {

@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import tippy from 'tippy.js';
 import { ref } from 'tsx-vanilla';
 
-import { SortDirection } from '../../constants/other';
+import { BASE_PATH, SortDirection } from '../../constants/other';
 import { EP_TOOLTIP } from '../../constants/tooltips';
 import { setItemQualityCssClass } from '../../css_utils';
 import { IndividualSimUI } from '../../individual_sim_ui';
@@ -671,7 +671,7 @@ export default class ItemList<T extends ItemListType> {
 			return makeAnchor(
 				ActionId.makeItemUrl(item.id),
 				<div className="d-flex">
-					<img src="/classic/assets/icons/inv_misc_coin_01.jpg" width="16" height="16" />
+					<img src={`${BASE_PATH}assets/icons/inv_misc_coin_01.jpg`} width="16" height="16" />
 					<div className="d-flex flex-column">
 						{factions.map(faction => (
 							<div className="d-flex">
@@ -720,26 +720,26 @@ export default class ItemList<T extends ItemListType> {
 	}
 
 	private getDropSourceIcon(): Element {
-		return <img src="/classic/assets/icons/inv_misc_bone_dwarfskull_01.jpg" className="item-source-icon-drop me-1" />;
+		return <img src={`${BASE_PATH}assets/icons/inv_misc_bone_dwarfskull_01.jpg`} className="item-source-icon-drop me-1" />;
 	}
 
 	private getVendorSourceIcon(): Element {
-		return <img src="/classic/assets/icons/inv_misc_coin_01.jpg" className="item-source-icon-vendor me-1" />;
+		return <img src={`${BASE_PATH}assets/icons/inv_misc_coin_01.jpg`} className="item-source-icon-vendor me-1" />;
 	}
 
 	private getProfessionSourceIcon(): Element {
-		return <img src="/classic/assets/icons/trade_blacksmithing.jpg" className="item-source-icon-profession me-1" />;
+		return <img src={`${BASE_PATH}assets/icons/trade_blacksmithing.jpg`} className="item-source-icon-profession me-1" />;
 	}
 
 	private getQuestSourceIcon(): Element {
-		return <img src="/classic/assets/icons/inv_scroll_15.jpg" className="item-source-icon-quest" />;
+		return <img src={`${BASE_PATH}assets/icons/inv_scroll_15.jpg`} className="item-source-icon-quest" />;
 	}
 
 	private getAllianceSourceIcon(): Element {
-		return <img src="/classic/assets/icons/inv_misc_crate03alliance.jpg" className="item-source-icon-alliance" />;
+		return <img src={`${BASE_PATH}assets/icons/inv_misc_crate03alliance.jpg`} className="item-source-icon-alliance" />;
 	}
 
 	private getHordeSourceIcon(): Element {
-		return <img src="/classic/assets/icons/inv_misc_crate04horde.jpg" className="item-source-icon-horde" />;
+		return <img src={`${BASE_PATH}assets/icons/inv_misc_crate04horde.jpg`} className="item-source-icon-horde" />;
 	}
 }

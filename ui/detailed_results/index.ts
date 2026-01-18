@@ -16,4 +16,4 @@ if (isIndividualSim) {
 
 document.body.classList.add('new-tab');
 
-const detailedResults = new WindowedDetailedResults(document.body)
+const detailedResults = new WindowedDetailedResults(document.body);

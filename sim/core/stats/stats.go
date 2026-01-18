@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/wowsims/classic/sim/core/proto"
+	"github.com/isfir/wowsims-turtle/sim/core/proto"
 )
 
 type Stats [Len]float64

@@ -6,7 +6,7 @@ import { Input, InputConfig } from './input.js';
  * Data for creating a number list picker.
  */
 export interface NumberListPickerConfig<ModObject> extends InputConfig<ModObject, Array<number>> {
-	placeholder?: string,
+	placeholder?: string;
 }
 
 // UI element for picking an arbitrary number list field.
@@ -39,7 +39,10 @@ export class NumberListPicker<ModObject> extends Input<ModObject, Array<number>>
 			return [];
 		}
 
-		return str.split(',').map(parseFloat).filter(val => !isNaN(val));
+		return str
+			.split(',')
+			.map(parseFloat)
+			.filter(val => !isNaN(val));
 	}
 
 	setInputValue(newValue: Array<number>) {

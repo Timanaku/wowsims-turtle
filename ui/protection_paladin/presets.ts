@@ -66,7 +66,7 @@ export const DefaultAPL = APLPresets[Phase.Phase5][0];
 ///////////////////////////////////////////////////////////////////////////
 
 // Default talents. Uses the wowhead calculator format, make the talents on
-// https://wowhead.com/classic/talent-calc and copy the numbers in the url.
+// https://wowhead.com/talent-calc and copy the numbers in the url.
 
 export const P4ProtTalents = {
 	name: 'P4 Prot',

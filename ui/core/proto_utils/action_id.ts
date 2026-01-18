@@ -1,5 +1,6 @@
 import { getWowheadLanguagePrefix } from '../constants/lang';
 import { MAX_CHARACTER_LEVEL } from '../constants/mechanics';
+import { BASE_PATH } from '../constants/other.js';
 import { ResourceType } from '../proto/api';
 import { ActionID as ActionIdProto, ItemRandomSuffix, OtherAction } from '../proto/common';
 import { IconData, UIItem as Item } from '../proto/ui';
@@ -49,7 +50,7 @@ export class ActionId {
 				break;
 			case OtherAction.OtherActionWait:
 				baseName = 'Wait';
-				iconUrl = '/classic/assets/icons/inv_misc_pocketwatch_01.jpg';
+				iconUrl = `${BASE_PATH}assets/icons/inv_misc_pocketwatch_01.jpg`;
 				break;
 			case OtherAction.OtherActionManaRegen:
 				name = 'Mana Tick';
@@ -82,7 +83,7 @@ export class ActionId {
 				break;
 			case OtherAction.OtherActionAttack:
 				name = 'Melee';
-				iconUrl = '/classic/assets/icons/inv_sword_04.jpg';
+				iconUrl = `${BASE_PATH}assets/icons/inv_sword_04.jpg`;
 				if (tag === 1) {
 					name += ' (Main-Hand)';
 				} else if (tag === 2) {
@@ -93,44 +94,44 @@ export class ActionId {
 				break;
 			case OtherAction.OtherActionShoot:
 				name = 'Shoot';
-				iconUrl = '/classic/assets/icons/ability_marksmanship.jpg';
+				iconUrl = `${BASE_PATH}assets/icons/ability_marksmanship.jpg`;
 				if (tag === 3) {
 					name += ' (Extra Attack)';
 				}
 				break;
 			case OtherAction.OtherActionMove:
 				name = 'Move';
-				iconUrl = '/classic/assets/icons/inv_boots_02.jpg';
+				iconUrl = `${BASE_PATH}assets/icons/inv_boots_02.jpg`;
 				break;
 			case OtherAction.OtherActionPet:
 				break;
 			case OtherAction.OtherActionRefund:
 				baseName = 'Refund';
-				iconUrl = '/classic/assets/icons/inv_misc_coin_01.jpg';
+				iconUrl = `${BASE_PATH}assets/icons/inv_misc_coin_01.jpg`;
 				break;
 			case OtherAction.OtherActionDamageTaken:
 				baseName = 'Damage Taken';
-				iconUrl = '/classic/assets/icons/inv_sword_04.jpg';
+				iconUrl = `${BASE_PATH}assets/icons/inv_sword_04.jpg`;
 				break;
 			case OtherAction.OtherActionHealingModel:
 				baseName = 'Incoming HPS';
-				iconUrl = '/classic/assets/icons/spell_holy_renew.jpg';
+				iconUrl = `${BASE_PATH}assets/icons/spell_holy_renew.jpg`;
 				break;
 			case OtherAction.OtherActionPotion:
 				baseName = 'Potion';
-				iconUrl = '/classic/assets/icons/trade_alchemy.jpg';
+				iconUrl = `${BASE_PATH}assets/icons/trade_alchemy.jpg`;
 				break;
 			case OtherAction.OtherActionExplosives:
 				baseName = 'Explosive';
-				iconUrl = '/classic/assets/icons/inv_misc_bomb_06.jpg';
+				iconUrl = `${BASE_PATH}assets/icons/inv_misc_bomb_06.jpg`;
 				break;
 			case OtherAction.OtherActionOffensiveEquip:
 				baseName = 'Offensive Equipment';
-				iconUrl = '/classic/assets/icons/inv_trinket_naxxramas03.jpg';
+				iconUrl = `${BASE_PATH}assets/icons/inv_trinket_naxxramas03.jpg`;
 				break;
 			case OtherAction.OtherActionDefensiveEquip:
 				baseName = 'Defensive Equipment';
-				iconUrl = '/classic/assets/icons/inv_trinket_naxxramas05.jpg';
+				iconUrl = `${BASE_PATH}assets/icons/inv_trinket_naxxramas05.jpg`;
 				break;
 		}
 		this.baseName = baseName;
@@ -178,7 +179,7 @@ export class ActionId {
 	}
 	static makeZoneUrl(id: number): string {
 		const langPrefix = getWowheadLanguagePrefix();
-		return `https://wowhead.com/classic/${langPrefix}zone=${id}`;
+		return `https://wowhead.com/${langPrefix}zone=${id}`;
 	}
 
 	setWowheadHref(elem: HTMLAnchorElement) {
@@ -506,7 +507,7 @@ export class ActionId {
 	}
 
 	private static makeIconUrl(iconLabel: string): string {
-		return `/classic/assets/icons/${iconLabel}.jpg`;
+		return `${BASE_PATH}assets/icons/${iconLabel}.jpg`;
 	}
 
 	static async getTooltipData(actionId: ActionId): Promise<IconData> {
@@ -591,7 +592,7 @@ const spellIDsToShowBuffs = new Set([
 	1214279, // https://database.turtlecraft.gg/?spell=1214279
 ]);
 
-export const defaultTargetIcon = '/classic/assets/icons/spell_shadow_metamorphosis.jpg';
+export const defaultTargetIcon = `${BASE_PATH}assets/icons/spell_shadow_metamorphosis.jpg`;
 
 const petNameToActionId: Record<string, ActionId> = {
 	'Eye of the Void': ActionId.fromSpellId(402789),
@@ -601,52 +602,52 @@ const petNameToActionId: Record<string, ActionId> = {
 	Shadowfiend: ActionId.fromSpellId(401977),
 };
 
-// https://wowhead.com/classic/hunter-pets
+// https://wowhead.com/hunter-pets
 const petNameToIcon: Record<string, string> = {
-	Bat: '/classic/assets/icons/ability_hunter_pet_bat.jpg',
-	Bear: '/classic/assets/icons/ability_hunter_pet_bear.jpg',
-	'Bird of Prey': '/classic/assets/icons/ability_hunter_pet_owl.jpg',
-	Boar: '/classic/assets/icons/ability_hunter_pet_boar.jpg',
-	'Carrion Bird': '/classic/assets/icons/ability_hunter_pet_vulture.jpg',
-	Cat: '/classic/assets/icons/ability_hunter_pet_cat.jpg',
-	Chimaera: '/classic/assets/icons/ability_hunter_pet_chimera.jpg',
-	'Core Hound': '/classic/assets/icons/ability_hunter_pet_corehound.jpg',
-	Crab: '/classic/assets/icons/ability_hunter_pet_crab.jpg',
-	Crocolisk: '/classic/assets/icons/ability_hunter_pet_crocolisk.jpg',
-	Devilsaur: '/classic/assets/icons/ability_hunter_pet_devilsaur.jpg',
-	Dragonhawk: '/classic/assets/icons/ability_hunter_pet_dragonhawk.jpg',
-	'Emerald Dragon Whelp': '/classic/assets/icons/inv_misc_head_dragon_green.jpg',
-	Eskhandar: '/classic/assets/icons/inv_misc_head_tiger_01.jpg',
-	Felguard: '/classic/assets/icons/spell_shadow_summonfelguard.jpg',
-	Felhunter: '/classic/assets/icons/spell_shadow_summonfelhunter.jpg',
-	'Spirit Wolves': '/classic/assets/icons/spell_shaman_feralspirit.jpg',
-	Infernal: '/classic/assets/icons/spell_shadow_summoninfernal.jpg',
-	Gorilla: '/classic/assets/icons/ability_hunter_pet_gorilla.jpg',
-	Hyena: '/classic/assets/icons/ability_hunter_pet_hyena.jpg',
-	Imp: '/classic/assets/icons/spell_shadow_summonimp.jpg',
-	'Mirror Image': '/classic/assets/icons/spell_magic_lesserinvisibilty.jpg',
-	Moth: '/classic/assets/icons/ability_hunter_pet_moth.jpg',
-	'Nether Ray': '/classic/assets/icons/ability_hunter_pet_netherray.jpg',
-	Owl: '/classic/assets/icons/ability_hunter_pet_owl.jpg',
-	Raptor: '/classic/assets/icons/ability_hunter_pet_raptor.jpg',
-	Ravager: '/classic/assets/icons/ability_hunter_pet_ravager.jpg',
-	Rhino: '/classic/assets/icons/ability_hunter_pet_rhino.jpg',
-	Scorpid: '/classic/assets/icons/ability_hunter_pet_scorpid.jpg',
-	Serpent: '/classic/assets/icons/spell_nature_guardianward.jpg',
-	Silithid: '/classic/assets/icons/ability_hunter_pet_silithid.jpg',
-	Spider: '/classic/assets/icons/ability_hunter_pet_spider.jpg',
-	'Spirit Beast': '/classic/assets/icons/ability_druid_primalprecision.jpg',
-	'Spore Bat': '/classic/assets/icons/ability_hunter_pet_sporebat.jpg',
-	Succubus: '/classic/assets/icons/spell_shadow_summonsuccubus.jpg',
-	Tallstrider: '/classic/assets/icons/ability_hunter_pet_tallstrider.jpg',
-	Treants: '/classic/assets/icons/ability_druid_forceofnature.jpg',
-	Turtle: '/classic/assets/icons/ability_hunter_pet_turtle.jpg',
-	Voidwalker: '/classic/assets/icons/spell_shadow_summonvoidwalker.jpg',
-	'Warp Stalker': '/classic/assets/icons/ability_hunter_pet_warpstalker.jpg',
-	Wasp: '/classic/assets/icons/ability_hunter_pet_wasp.jpg',
-	'Wind Serpent': '/classic/assets/icons/ability_hunter_pet_windserpent.jpg',
-	Wolf: '/classic/assets/icons/ability_hunter_pet_wolf.jpg',
-	Worm: '/classic/assets/icons/ability_hunter_pet_worm.jpg',
+	Bat: `${BASE_PATH}assets/icons/ability_hunter_pet_bat.jpg`,
+	Bear: `${BASE_PATH}assets/icons/ability_hunter_pet_bear.jpg`,
+	'Bird of Prey': `${BASE_PATH}assets/icons/ability_hunter_pet_owl.jpg`,
+	Boar: `${BASE_PATH}assets/icons/ability_hunter_pet_boar.jpg`,
+	'Carrion Bird': `${BASE_PATH}assets/icons/ability_hunter_pet_vulture.jpg`,
+	Cat: `${BASE_PATH}assets/icons/ability_hunter_pet_cat.jpg`,
+	Chimaera: `${BASE_PATH}assets/icons/ability_hunter_pet_chimera.jpg`,
+	'Core Hound': `${BASE_PATH}assets/icons/ability_hunter_pet_corehound.jpg`,
+	Crab: `${BASE_PATH}assets/icons/ability_hunter_pet_crab.jpg`,
+	Crocolisk: `${BASE_PATH}assets/icons/ability_hunter_pet_crocolisk.jpg`,
+	Devilsaur: `${BASE_PATH}assets/icons/ability_hunter_pet_devilsaur.jpg`,
+	Dragonhawk: `${BASE_PATH}assets/icons/ability_hunter_pet_dragonhawk.jpg`,
+	'Emerald Dragon Whelp': `${BASE_PATH}assets/icons/inv_misc_head_dragon_green.jpg`,
+	Eskhandar: `${BASE_PATH}assets/icons/inv_misc_head_tiger_01.jpg`,
+	Felguard: `${BASE_PATH}assets/icons/spell_shadow_summonfelguard.jpg`,
+	Felhunter: `${BASE_PATH}assets/icons/spell_shadow_summonfelhunter.jpg`,
+	'Spirit Wolves': `${BASE_PATH}assets/icons/spell_shaman_feralspirit.jpg`,
+	Infernal: `${BASE_PATH}assets/icons/spell_shadow_summoninfernal.jpg`,
+	Gorilla: `${BASE_PATH}assets/icons/ability_hunter_pet_gorilla.jpg`,
+	Hyena: `${BASE_PATH}assets/icons/ability_hunter_pet_hyena.jpg`,
+	Imp: `${BASE_PATH}assets/icons/spell_shadow_summonimp.jpg`,
+	'Mirror Image': `${BASE_PATH}assets/icons/spell_magic_lesserinvisibilty.jpg`,
+	Moth: `${BASE_PATH}assets/icons/ability_hunter_pet_moth.jpg`,
+	'Nether Ray': `${BASE_PATH}assets/icons/ability_hunter_pet_netherray.jpg`,
+	Owl: `${BASE_PATH}assets/icons/ability_hunter_pet_owl.jpg`,
+	Raptor: `${BASE_PATH}assets/icons/ability_hunter_pet_raptor.jpg`,
+	Ravager: `${BASE_PATH}assets/icons/ability_hunter_pet_ravager.jpg`,
+	Rhino: `${BASE_PATH}assets/icons/ability_hunter_pet_rhino.jpg`,
+	Scorpid: `${BASE_PATH}assets/icons/ability_hunter_pet_scorpid.jpg`,
+	Serpent: `${BASE_PATH}assets/icons/spell_nature_guardianward.jpg`,
+	Silithid: `${BASE_PATH}assets/icons/ability_hunter_pet_silithid.jpg`,
+	Spider: `${BASE_PATH}assets/icons/ability_hunter_pet_spider.jpg`,
+	'Spirit Beast': `${BASE_PATH}assets/icons/ability_druid_primalprecision.jpg`,
+	'Spore Bat': `${BASE_PATH}assets/icons/ability_hunter_pet_sporebat.jpg`,
+	Succubus: `${BASE_PATH}assets/icons/spell_shadow_summonsuccubus.jpg`,
+	Tallstrider: `${BASE_PATH}assets/icons/ability_hunter_pet_tallstrider.jpg`,
+	Treants: `${BASE_PATH}assets/icons/ability_druid_forceofnature.jpg`,
+	Turtle: `${BASE_PATH}assets/icons/ability_hunter_pet_turtle.jpg`,
+	Voidwalker: `${BASE_PATH}assets/icons/spell_shadow_summonvoidwalker.jpg`,
+	'Warp Stalker': `${BASE_PATH}assets/icons/ability_hunter_pet_warpstalker.jpg`,
+	Wasp: `${BASE_PATH}assets/icons/ability_hunter_pet_wasp.jpg`,
+	'Wind Serpent': `${BASE_PATH}assets/icons/ability_hunter_pet_windserpent.jpg`,
+	Wolf: `${BASE_PATH}assets/icons/ability_hunter_pet_wolf.jpg`,
+	Worm: `${BASE_PATH}assets/icons/ability_hunter_pet_worm.jpg`,
 };
 
 export function getPetIconFromName(name: string): string | ActionId | undefined {
@@ -655,10 +656,10 @@ export function getPetIconFromName(name: string): string | ActionId | undefined 
 
 export const resourceTypeToIcon: Record<ResourceType, string> = {
 	[ResourceType.ResourceTypeNone]: '',
-	[ResourceType.ResourceTypeHealth]: '/classic/assets/icons/inv_potion_01.jpg',
-	[ResourceType.ResourceTypeMana]: '/classic/assets/icons/inv_potion_02.jpg',
-	[ResourceType.ResourceTypeEnergy]: '/classic/assets/icons/spell_shadow_shadowworddominate.jpg',
-	[ResourceType.ResourceTypeRage]: '/classic/assets/icons/inv_potion_03.jpg',
-	[ResourceType.ResourceTypeComboPoints]: '/classic/assets/icons/inv_sword_04.jpg',
-	[ResourceType.ResourceTypeFocus]: '/classic/assets/icons/ability_hunter_aimedshot.jpg',
+	[ResourceType.ResourceTypeHealth]: `${BASE_PATH}assets/icons/inv_potion_01.jpg`,
+	[ResourceType.ResourceTypeMana]: `${BASE_PATH}assets/icons/inv_potion_02.jpg`,
+	[ResourceType.ResourceTypeEnergy]: `${BASE_PATH}assets/icons/spell_shadow_shadowworddominate.jpg`,
+	[ResourceType.ResourceTypeRage]: `${BASE_PATH}assets/icons/inv_potion_03.jpg`,
+	[ResourceType.ResourceTypeComboPoints]: `${BASE_PATH}assets/icons/inv_sword_04.jpg`,
+	[ResourceType.ResourceTypeFocus]: `${BASE_PATH}assets/icons/ability_hunter_aimedshot.jpg`,
 };

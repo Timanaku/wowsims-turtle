@@ -14,13 +14,13 @@ export interface Listener<T> {
 }
 
 interface FiredEventData {
-	eventID: EventID,
-	error: Error,
+	eventID: EventID;
+	error: Error;
 }
 
 interface FrozenEventData<T> {
-	eventID: EventID,
-	event: T,
+	eventID: EventID;
+	event: T;
 }
 
 /** Provides a type-safe event interface. */

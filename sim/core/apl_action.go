@@ -3,7 +3,7 @@ package core
 import (
 	"fmt"
 
-	"github.com/wowsims/classic/sim/core/proto"
+	"github.com/isfir/wowsims-turtle/sim/core/proto"
 )
 
 type APLAction struct {

@@ -147,10 +147,7 @@ export class ConsumesPicker extends Component {
 			relevantStatOptions(ConsumablesInputs.STRENGTH_CONSUMES_CONFIG, this.simUI),
 			'Strength',
 		);
-		const hitConsumableOptions = ConsumablesInputs.makeHitConsumableInput(
-			relevantStatOptions(ConsumablesInputs.HIT_CONSUMABLE_CONFIG, this.simUI),
-			'Hit',
-		);
+		const hitConsumableOptions = ConsumablesInputs.makeHitConsumableInput(relevantStatOptions(ConsumablesInputs.HIT_CONSUMABLE_CONFIG, this.simUI), 'Hit');
 
 		const pickers = [
 			buildIconInput(physicalConsumesElem, this.simUI.player, apBuffOptions),
